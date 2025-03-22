@@ -164,21 +164,30 @@ class CropClassifier:
     def predict_crop(self, image_path):
         """Predict the crop type for a given image"""
         if self.model is None:
-            print("No trained model found. Please train the model first.")
-            return None
+            # Try to train the model if dataset exists
+            if os.path.exists(self.dataset_path) and os.listdir(self.dataset_path):
+                print("Training model for first-time use...")
+                self.train_model(epochs=10)
+            else:
+                print("No trained model found and no dataset available for training.")
+                return None
 
         # Load and preprocess image
-        img = load_img(image_path, target_size=self.img_size)
-        img_array = img_to_array(img)
-        img_array = np.expand_dims(img_array, axis=0)  # Expand dims for batch shape
-        img_array = preprocess_input(img_array)
+        try:
+            img = load_img(image_path, target_size=self.img_size)
+            img_array = img_to_array(img)
+            img_array = np.expand_dims(img_array, axis=0)  # Expand dims for batch shape
+            img_array = preprocess_input(img_array)
 
-        # Prediction
-        predictions = self.model.predict(img_array)
-        confidence = np.max(predictions) * 100  # Convert to percentage
-        predicted_class = self.crop_classes[np.argmax(predictions)]
+            # Prediction
+            predictions = self.model.predict(img_array)
+            confidence = np.max(predictions) * 100  # Convert to percentage
+            predicted_class = self.crop_classes[np.argmax(predictions)]
 
-        return {"crop": predicted_class, "confidence": confidence}
+            return {"crop": predicted_class, "confidence": confidence}
+        except Exception as e:
+            print(f"Error during prediction: {str(e)}")
+            return {"crop": "unknown", "confidence": 0.0}
 
 def main():
     classifier = CropClassifier()
