@@ -99,8 +99,8 @@ async def predict_crop(soil_data: SoilData):
         
         # Get prediction
         recommended_crop = model.predict(input_data)
-        
-        return {"recommended_crop": recommended_crop}
+        #[(crop, round(conf, 2)) for crop, conf in zip(top_3_crops, top_3_confidences)]
+        return {"recommended_crop": [crop for crop, _ in recommended_crop]}
     
     except Exception as e:
         raise HTTPException(
@@ -159,6 +159,45 @@ async def detect_crop(file: UploadFile = File(...)):
             status_code=500,
             detail=f"Error detecting crop: {str(e)}"
         )
+
+@app.get("/districts/", tags=["Metadata"])
+async def get_districts():
+    """Returns a list of available districts."""
+    try:
+        districts = model.get_available_districts()
+        return {"districts": districts}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/blocks/{district}/", tags=["Metadata"])
+async def get_blocks(district: str):
+    """Returns a list of blocks in the given district."""
+    try:
+        blocks = model.get_blocks_in_district(district)
+        if not blocks:
+            raise HTTPException(status_code=404, detail="No blocks found for this district")
+        return {"district": district, "blocks": blocks}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/blocks/", tags=["Metadata"])
+async def get_all_blocks():
+    """Returns a list of all available blocks."""
+    try:
+        blocks = model.get_all_blocks()
+        return {"blocks": blocks}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/crops/", tags=["Metadata"])
+async def get_crop_names():
+    """Returns a list of crop names available in the dataset for detection."""
+    try:
+        crops = crop_classifier.get_crop_names()
+        return {"crops": crops}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
 
 @app.get("/health/", tags=["Health"])
 async def health_check():
