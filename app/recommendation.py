@@ -1,289 +1,145 @@
-import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input, MobileNetV2
-from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D
-from tensorflow.keras.models import Model, load_model
-import numpy as np
+import pandas as pd
+import joblib
 import os
-import json
+import requests
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder, StandardScaler
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
 
-class CropClassifier:
-    def __init__(self, dataset_path="dataset/Crop_detection", model_path="model/crop_classification_model.keras"):
-        self.dataset_path = dataset_path
-        self.model_path = model_path
-        self.class_indices_path = os.path.join(os.path.dirname(self.model_path), "class_indices.json")
-        self.img_size = (224, 224)
-        self.batch_size = 32
-        
-        # Default crop classes if no dataset is available
-        self.default_classes = ["rice", "maize", "chickpea", "kidneybeans", "pigeonpeas", 
-                               "mothbeans", "mungbean", "blackgram", "lentil", "pomegranate", 
-                               "banana", "mango", "grapes", "watermelon", "muskmelon", "apple", 
-                               "orange", "papaya", "coconut", "cotton", "jute", "coffee"]
-        
-        self.crop_classes = self.default_classes  # Initialize with defaults
-        
-        # Check if model exists
-        if os.path.exists(self.model_path):
-            try:
-                self.model = load_model(self.model_path)
-                print(f"Loaded trained model from {self.model_path}")
-                
-                # Try to load class indices from file
-                if os.path.exists(self.class_indices_path):
-                    with open(self.class_indices_path, 'r') as f:
-                        self.class_indices = json.load(f)
-                        self.crop_classes = list(self.class_indices.keys())
-                        print(f"Loaded crop classes from file: {self.crop_classes}")
-                else:
-                    # Initialize crop classes from dataset directory
-                    self._initialize_crop_classes()
-            except Exception as e:
-                print(f"Error loading model: {e}")
-                self.model = None
-        else:
-            self.model = None
-            print("No trained model found. Will use a default model for predictions.")
-            
-            # Try to initialize a simple model for basic predictions
-            self._initialize_default_model()
+class CropRecommendationModel:
+    def __init__(self, dataset_dir="dataset/"):
+        self.model = RandomForestClassifier(n_estimators=100, random_state=42)
+        self.scaler = StandardScaler()
+        self.label_encoder = LabelEncoder()
+        self.trained = False
+        self.dataset_dir = dataset_dir  # Directory where CSV files are stored
+        self.weather_api_key = "654231e8f6affa69988bab426f8fd7da"
 
-    def _initialize_default_model(self):
-        """Initialize a simple model for basic predictions when no trained model exists"""
-        try:
-            # Create a basic MobileNetV2 model
-            base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224, 224, 3))
-            x = base_model.output
-            x = GlobalAveragePooling2D()(x)
-            x = Dense(256, activation="relu")(x)
-            x = Dropout(0.5)(x)
-            predictions = Dense(len(self.crop_classes), activation="softmax")(x)
-            
-            self.model = Model(inputs=base_model.input, outputs=predictions)
-            self.model.compile(
-                optimizer='adam',
-                loss='categorical_crossentropy',
-                metrics=['accuracy']
-            )
-            print("Initialized default model for basic predictions")
-        except Exception as e:
-            print(f"Failed to initialize default model: {e}")
+    def load_data(self, file_path):
+        df = pd.read_csv(file_path)
+        df["label"] = self.label_encoder.fit_transform(df["label"])
+        X = df.drop("label", axis=1)
+        y = df["label"]
+        return train_test_split(X, y, test_size=0.2, random_state=42)
 
-    def _initialize_crop_classes(self):
-        """Initialize crop classes from dataset directory"""
-        if os.path.exists(self.dataset_path):
-            # Get class names from directory structure
-            dirs = [d for d in os.listdir(self.dataset_path) 
-                   if os.path.isdir(os.path.join(self.dataset_path, d))]
-            
-            if dirs:
-                self.crop_classes = sorted(dirs)
-                print(f"Initialized crop classes from directory: {self.crop_classes}")
-                
-                # Create class indices
-                self.class_indices = {cls: i for i, cls in enumerate(self.crop_classes)}
-                
-                # Save class indices to file
-                os.makedirs(os.path.dirname(self.class_indices_path), exist_ok=True)
-                with open(self.class_indices_path, 'w') as f:
-                    json.dump(self.class_indices, f)
-                print(f"Saved class indices to {self.class_indices_path}")
+    def train(self, file_path):
+        X_train, X_test, y_train, y_test = self.load_data(file_path)
+        X_train = self.scaler.fit_transform(X_train)
+        X_test = self.scaler.transform(X_test)
+        
+        self.model.fit(X_train, y_train)
+        self.trained = True
+        
+        y_pred = self.model.predict(X_test)
+        accuracy = accuracy_score(y_test, y_pred) * 100
+        print(f"Model Accuracy: {accuracy:.2f}%")
+        
+        return accuracy
+
+    def save_model(self, model_path="model/crop_model.pkl", scaler_path="model/scaler.pkl", encoder_path="model/label_encoder.pkl"):
+        joblib.dump(self.model, model_path)
+        joblib.dump(self.scaler, scaler_path)
+        joblib.dump(self.label_encoder, encoder_path)
+        print("Model, scaler, and label encoder saved successfully.")
+
+    def load_model(self, model_path="model/crop_model.pkl", scaler_path="model/scaler.pkl", encoder_path="model/label_encoder.pkl"):
+        self.model = joblib.load(model_path)
+        self.scaler = joblib.load(scaler_path)
+        self.label_encoder = joblib.load(encoder_path)
+        self.trained = True
+        print("Model loaded successfully.")
+
+    def get_soil_data(self, district, block=None):
+        """Fetch soil quality data for the given district/block."""
+        district_file = os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv")
+        
+        if not os.path.exists(district_file):
+            raise FileNotFoundError("Maharashtra data file not found.")
+
+        df = pd.read_csv(district_file)
+        
+        if block:
+            block_file = os.path.join(f"{self.dataset_dir}/region_soil/", f"{district.lower()}.csv")
+            if os.path.exists(block_file):
+                df = pd.read_csv(block_file)
+                df = df[df["Block"] == block]
             else:
-                print("Warning: No crop classes found in dataset directory. Using defaults.")
-                # Create default class indices
-                self.class_indices = {cls: i for i, cls in enumerate(self.default_classes)}
+                print(f"Block data file for {district} not found. Searching in all districts.")
+                df = df[df["Block"] == block]  # Search in maharashtra.csv
         else:
-            print(f"Warning: Dataset path {self.dataset_path} not found. Using default classes.")
-            # Create default class indices
-            self.class_indices = {cls: i for i, cls in enumerate(self.default_classes)}
+            df = df[df["District"] == district]
 
-    def train_model(self, epochs=10):
-        """Train the model and save it"""
-        # Check for GPU availability
-        physical_devices = tf.config.list_physical_devices('GPU')
-        if physical_devices:
-            print(f"Found {len(physical_devices)} GPU(s). Training on GPU.")
-            # Configure memory growth to avoid memory allocation errors
-            for device in physical_devices:
-                tf.config.experimental.set_memory_growth(device, True)
-        else:
-            print("No GPU found. Training on CPU.")
-            
-        # Data augmentation for training set
-        train_datagen = ImageDataGenerator(
-            rescale=1./255,
-            rotation_range=30,
-            width_shift_range=0.2,
-            height_shift_range=0.2,
-            shear_range=0.2,
-            zoom_range=0.2,
-            horizontal_flip=True,
-            vertical_flip=True,
-            brightness_range=[0.8, 1.2],
-            fill_mode='nearest',
-            validation_split=0.2
-        )
-
-        # Only rescale validation data
-        val_datagen = ImageDataGenerator(
-            rescale=1./255,
-            validation_split=0.2
-        )
-
-        train_generator = train_datagen.flow_from_directory(
-            self.dataset_path,
-            target_size=self.img_size,
-            batch_size=self.batch_size,
-            class_mode="categorical",
-            subset="training"
-        )
-
-        val_generator = val_datagen.flow_from_directory(
-            self.dataset_path,
-            target_size=self.img_size,
-            batch_size=self.batch_size,
-            class_mode="categorical",
-            subset="validation"
-        )
-
-        self.class_indices = train_generator.class_indices
-        self.crop_classes = list(self.class_indices.keys())
-        print("Detected Crop Classes:", self.crop_classes)
-
-        # Load Pretrained Model (MobileNetV2)
-        base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224, 224, 3))
+        if df.empty:
+            raise ValueError("No matching district/block found in the dataset.")
         
-        # Fine-tuning: Unfreeze some top layers for better performance
-        # First freeze all layers
-        base_model.trainable = False
-        
-        # Then unfreeze some top layers for fine-tuning
-        for layer in base_model.layers[-20:]:
-            layer.trainable = True
+        return df[["N_low", "N_mid", "N_high", "P_low", "P_mid", "P_high", "K_low", "K_mid", "K_high", "pH_low", "pH_mid", "pH_high"]].mean().tolist()
+    
+    def get_weather_data(self, district):
+        """Fetch temperature, humidity, and rainfall data from OpenWeatherMap API."""
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={district},IN&appid={self.weather_api_key}&units=metric"
+        response = requests.get(url)
+        if response.status_code != 200:
+            print("Warning: Could not fetch weather data.")
+            return None
+        data = response.json()
+        temperature = data["main"]["temp"]
+        humidity = data["main"]["humidity"]
+        rainfall = data.get("rain", {}).get("1h", 0)
+        return [temperature, humidity, rainfall]
 
-        # Build Model
-        x = base_model.output
-        x = GlobalAveragePooling2D()(x)
-        x = Dense(256, activation="relu")(x)
-        x = Dropout(0.5)(x)  # Increased dropout rate
-        x = Dense(128, activation="relu")(x)
-        x = Dropout(0.3)(x)
-        predictions = Dense(len(self.crop_classes), activation="softmax")(x)
+    def predict(self, district, block=None):
+        """Predict top 3 crop recommendations based on location (district/block)."""
+        if not self.trained:
+            raise Exception("Model is not trained or loaded.")
 
-        self.model = Model(inputs=base_model.input, outputs=predictions)
-        
-        # Use learning rate scheduler to reduce LR on plateau
-        lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(
-            monitor='val_loss',
-            factor=0.5,
-            patience=3,
-            min_lr=1e-6,
-            verbose=1
-        )
-        
-        # Early stopping to prevent overfitting
-        early_stopping = tf.keras.callbacks.EarlyStopping(
-            monitor='val_loss',
-            patience=5,
-            restore_best_weights=True,
-            verbose=1
-        )
-        
-        # Model checkpoint to save best model
-        checkpoint = tf.keras.callbacks.ModelCheckpoint(
-            self.model_path,
-            monitor='val_accuracy',
-            save_best_only=True,
-            mode='max',
-            verbose=1
-        )
-        
-        self.model.compile(
-            optimizer=tf.keras.optimizers.Adam(learning_rate=0.0005),
-            loss="categorical_crossentropy",
-            metrics=["accuracy", tf.keras.metrics.Precision(), tf.keras.metrics.Recall()]
-        )
-
-        # Train Model
-        history = self.model.fit(
-            train_generator,
-            validation_data=val_generator,
-            epochs=epochs,
-            callbacks=[lr_scheduler, early_stopping, checkpoint]
-        )
-
-        # Save Model (if not already saved by checkpoint)
-        os.makedirs(os.path.dirname(self.model_path), exist_ok=True)
-        if not os.path.exists(self.model_path):
-            self.model.save(self.model_path)
-        print(f"Model saved at {self.model_path}")
-
-        return history
-
-    def predict_crop(self, image_path):
-        """Predict the crop type for a given image"""
-        if self.model is None:
-            print("No model available for prediction")
-            return {"crop": "unknown", "confidence": 0.0}
-
-        # Debug information
-        print(f"Predicting crop for image: {image_path}")
-        print(f"Available crop classes: {self.crop_classes}")
-        
-        # Load and preprocess image
         try:
-            if not os.path.exists(image_path):
-                print(f"Error: Image file not found at {image_path}")
-                return {"crop": "unknown", "confidence": 0.0}
-                
-            img = load_img(image_path, target_size=self.img_size)
-            img_array = img_to_array(img)
-            img_array = np.expand_dims(img_array, axis=0)  # Expand dims for batch shape
-            img_array = preprocess_input(img_array)
+            soil_data = self.get_soil_data(district, block)
+        except (FileNotFoundError, ValueError) as e:
+            return str(e)
 
-            # Prediction
-            predictions = self.model.predict(img_array)
-            predicted_index = np.argmax(predictions)
-            confidence = float(np.max(predictions) * 100)  # Convert to percentage
-            
-            print(f"Prediction array: {predictions}")
-            print(f"Predicted index: {predicted_index}")
-            
-            # Get predicted class
-            if len(self.crop_classes) > predicted_index:
-                predicted_class = self.crop_classes[predicted_index]
-                print(f"Predicted class: {predicted_class} with confidence {confidence:.2f}%")
-            else:
-                print(f"Error: Predicted index {predicted_index} out of range for crop classes (length: {len(self.crop_classes)})")
-                predicted_class = "unknown"
+        weather_data = self.get_weather_data(district)
+        if weather_data is None:
+            return "Weather data unavailable. Cannot proceed with prediction."
+        
+        input_data = soil_data + weather_data
+        input_data = self.scaler.transform([input_data])
+        probabilities = self.model.predict_proba(input_data)[0]
+        top_3_indices = probabilities.argsort()[-3:][::-1]
+        top_3_crops = self.label_encoder.inverse_transform(top_3_indices)
+        top_3_confidences = probabilities[top_3_indices] * 100
 
-            return {"crop": predicted_class, "confidence": confidence}
-        except Exception as e:
-            print(f"Error during prediction: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            return {"crop": "unknown", "confidence": 0.0}
+        return [(crop, round(conf, 2)) for crop, conf in zip(top_3_crops, top_3_confidences)]
+    
+    def get_available_districts(self):
+        df = pd.read_csv(os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv"))
+        return df["District"].unique().tolist()
 
-def main():
-    classifier = CropClassifier()
+    def get_blocks_in_district(self, district):
+        df = pd.read_csv(os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv"))
+        return df[df["District"] == district]["Block"].unique().tolist()
 
-    # Train if model doesn't exist
-    if not os.path.exists(classifier.model_path):
-        classifier.train_model(epochs=50)
+    def get_all_blocks(self):
+        df = pd.read_csv(os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv"))
+        return df["Block"].unique().tolist()
 
-    # Example Prediction
-    image_path = "/kaggle/input/crop-detection/Crop_detection/banana/sample.jpg"  # Change this to a real image path
-    result = classifier.predict_crop(image_path)
-    print(result)
+    def get_crop_names(self):
+        #crop_path = os.path.join(f"{self.dataset_dir}/region_soil/", "Crop_detection")
+        #return [name for name in os.listdir(crop_path) if os.path.isdir(os.path.join(crop_path, name))]
+        return ['almond', 'banana', 'cardamom', 'Cherry', 'chilli', 'clove', 'coconut', 'Coffee-plant', 'cotton', 'Cucumber', 'Fox_nut(Makhana)', 'gram', 'jowar', 'jute', 'Lemon', 'maize', 'mustard-oil', 'Olive-tree', 'papaya', 'Pearl_millet(bajra)', 'pineapple', 'rice', 'soyabean', 'sugarcane', 'sunflower', 'tea', 'Tobacco-plant', 'tomato', 'vigna-radiati(Mung)', 'wheat']
+
 # Example Usage
 if __name__ == "__main__":
-    classifier = CropClassifier()
-
-    # Train if model doesn't exist
-    if not os.path.exists(classifier.model_path):
-        classifier.train_model(epochs=50)
-
+    crop_model = CropRecommendationModel()
+    crop_model.train("dataset/Crop_recommendation.csv")
+    crop_model.save_model()
+    
     # Example Prediction
-    image_path = "/kaggle/input/crop-detection/Crop_detection/banana/sample.jpg"  # Change this to a real image path
-    result = classifier.predict_crop(image_path)
-    print(result)
+    result = crop_model.predict(district="Nagpur", block="SomeBlock")
+    print("Top 3 Recommended Crops:", result)
+    
+    # Fetch available data
+    print("Available Districts:", crop_model.get_available_districts())
+    print("Blocks in Nagpur:", crop_model.get_blocks_in_district("Nagpur"))
+    print("All Available Blocks:", crop_model.get_all_blocks())
+    print("Available Crop Names:", crop_model.get_crop_names())
