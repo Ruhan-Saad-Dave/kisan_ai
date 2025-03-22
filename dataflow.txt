@@ -1,0 +1,27 @@
+# Crop quality
+(before)
+YOLO v8, trained on image data, for detecting quality of the crop.
+
+(after)
+receive image -> preprocess image -> feed to model -> get quality rating -> send back the number
+
+# Crop price
+receive location, crop, time -> feed to model -> get predictions -> return list of numbers (or dictionary for date : price)
+
+# Crop suggestion
+receive location, season, weather, maintainance, cost, time -> feed to model -> get short (name 3) and long answer (with reasons) -> send back 2 arrays (short and long)
+
+# farm education
+receive text -> feed to model -> model check documents, search web, access tools -> generate detailed steps with time line -> return json 
+{
+    "work_type" : ...,
+    "steps" : {
+        1 : {
+            "process" : ....,
+            "duration" : ....
+        }
+    }
+}
+
+# calling agent 
+to be continued.

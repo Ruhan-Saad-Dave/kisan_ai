@@ -1,0 +1,12 @@
+# crop recommendation
+N, P, K, temperature, humidity, ph, rainfall
+https://www.kaggle.com/api/v1/datasets/download/atharvaingle/crop-recommendation-dataset
+
+# crop image classification
+https://www.kaggle.com/api/v1/datasets/download/mdwaquarazam/agricultural-crops-image-classification
+
+# real time crop price
+https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi
+
+#2023 crop price
+https://www.kaggle.com/api/v1/datasets/download/rajumavinmar/indian-agriculture-crop-price-dataset
