@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File, Query
 from pydantic import BaseModel
 import uvicorn
 from app.recommendation import CropRecommendationModel
@@ -7,6 +7,7 @@ import os
 import shutil
 from typing import Optional, List 
 import uuid
+from app.prediction import CropPriceFinder
 
 app = FastAPI(
     title="Crop Recommendation API",
@@ -19,6 +20,9 @@ model = CropRecommendationModel()
 
 # Initialize the crop classifier
 crop_classifier = CropClassifier()
+
+# Initialize the crop price finder
+price_finder = CropPriceFinder("path/to/cleaned_crop_prices.csv")
 
 # Load the pre-trained model
 try:
@@ -209,6 +213,33 @@ async def get_crop_names():
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/crop-price/", tags=["Price"])
+async def get_crop_price(
+    crop_name: str = Query(..., description="Name of the crop"),
+    district: Optional[str] = Query(None, description="Optional district to narrow search"),
+    market: Optional[str] = Query(None, description="Optional market to narrow search")
+):
+    """
+    Retrieve min and max price for a given crop.
+    
+    Parameters:
+    - crop_name: Name of the crop (e.g., "Brinjal")
+    - district: Optional district to narrow search
+    - market: Optional market to narrow search
+    
+    Returns:
+    - Dictionary containing min and max price
+    """
+    try:
+        result = price_finder.get_crop_price(crop_name, district, market)
+        
+        if "message" in result:
+            raise HTTPException(status_code=404, detail=result["message"])
+        
+        return result
+    
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error retrieving crop price: {str(e)}")
 
 @app.get("/health/", tags=["Health"])
 async def health_check():
