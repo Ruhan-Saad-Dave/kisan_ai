@@ -43,4 +43,4 @@ ENV PYTHONPATH=/app
 EXPOSE 7860
 
 # Command to run the application using the virtual environment
-CMD ["/opt/venv/bin/uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+CMD ["/opt/venv/bin/uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "7860"]
