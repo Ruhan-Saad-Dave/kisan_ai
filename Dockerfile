@@ -11,6 +11,8 @@ RUN apt-get update && \
     wget \
     unzip \
     python3-venv \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
 # Create and activate virtual environment
@@ -28,10 +30,13 @@ RUN pip install --no-cache-dir --upgrade pip && \
 COPY . .
 
 # Create necessary directories if they don't exist
-RUN mkdir -p model dataset
+RUN mkdir -p model dataset temp_uploads
 
-# Download the dataset
-RUN wget -O /app/dataset/Crop_recommendation.csv https://raw.githubusercontent.com/Gladiator07/Crop-Recommendation-System/master/Crop_recommendation.csv || echo "Dataset download failed, will attempt to download at runtime"
+# Download the crop recommendation dataset
+RUN wget -O /app/dataset/Crop_recommendation.csv https://raw.githubusercontent.com/Gladiator07/Crop-Recommendation-System/master/Crop_recommendation.csv || echo "Crop recommendation dataset download failed, will attempt to download at runtime"
+
+# Create directory for crop detection dataset
+RUN mkdir -p /app/dataset/Crop_detection
 
 # Set environment variables
 ENV PORT=7860

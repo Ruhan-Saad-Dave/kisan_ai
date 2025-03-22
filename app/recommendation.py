@@ -28,7 +28,7 @@ class CropRecommendationModel:
         self.trained = True
         
         y_pred = self.model.predict(X_test)
-        accuracy = accuracy_score(y_test, y_pred)
+        accuracy = accuracy_score(y_test, y_pred) * 100
         print(f"Model Accuracy: {accuracy:.2f}")
         
         return accuracy
