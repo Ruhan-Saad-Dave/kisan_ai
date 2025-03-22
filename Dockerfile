@@ -20,12 +20,6 @@ ENV PATH="/opt/venv/bin:$PATH"
 # Copy requirements file
 COPY requirements.txt .
 
-# Update requirements.txt with necessary dependencies
-RUN echo "pandas>=1.3.0" >> requirements.txt && \
-    echo "scikit-learn>=0.24.0" >> requirements.txt && \
-    echo "joblib>=1.0.0" >> requirements.txt && \
-    echo "numpy>=1.20.0" >> requirements.txt
-
 # Install Python dependencies in the virtual environment
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
