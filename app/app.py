@@ -49,6 +49,10 @@ class CropResponse(BaseModel):
     recommended_crops: List[CropPrediction]
     message: Optional[str] = None
 
+class CropDetectionResponse(BaseModel):
+    detected_crop: str
+    confidence: float
+
 @app.get("/", tags=["Root"])
 async def root():
     """Root endpoint that returns API information."""
