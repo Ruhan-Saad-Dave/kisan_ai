@@ -1,0 +1,1042 @@
+District,Market,Commodity,Min Price,Max Price
+Ahmednagar,Ahmednagar,Brinjal,5.0,20.0
+Ahmednagar,Ahmednagar,Cabbage,2.0,12.0
+Ahmednagar,Ahmednagar,Cauliflower,2.0,15.0
+Ahmednagar,Ahmednagar,Cucumbar,4.0,15.0
+Ahmednagar,Ahmednagar,Guar,40.0,100.0
+Ahmednagar,Ahmednagar,Onion,3.0,17.0
+Ahmednagar,Ahmednagar,Ridgeguard,20.0,40.0
+Ahmednagar,Ahmednagar,Tomato,2.0,12.0
+Ahmednagar,Jamkhed,Arhar,68.0,70.0
+Ahmednagar,Ahmednagar,Bengal Gram,50.0,52.0
+Ahmednagar,Ahmednagar,Groundnut,40.0,44.0
+Ahmednagar,Ahmednagar,Jowar,27.0,34.0
+Ahmednagar,Ahmednagar,nan,35.0,45.0
+Ahmednagar,Ahmednagar,Maize,19.0,21.0
+Ahmednagar,Ahmednagar,Soyabean,37.0,39.0
+Ahmednagar,Ahmednagar,Wheat,26.0,29.0
+Ahmednagar,Karjat,Arhar,68.0,71.0
+Ahmednagar,Ahmednagar,Bengal Gram,48.0,51.0
+Ahmednagar,Ahmednagar,Jowar,20.0,30.0
+Ahmednagar,Ahmednagar,Maize,20.0,22.2
+Ahmednagar,Ahmednagar,nan,23.0,23.0
+Ahmednagar,Ahmednagar,Onion,7.0,16.0
+Ahmednagar,Ahmednagar,Tamarind Fruit,25.0,30.0
+Ahmednagar,Ahmednagar,Wheat,23.0,29.0
+Ahmednagar,Kopargaon,Arhar,55.01,62.51
+Ahmednagar,Ahmednagar,Bengal Gram,49.01,53.27
+Ahmednagar,Ahmednagar,Jowar,20.0,20.0
+Ahmednagar,Ahmednagar,Onion,10.0,16.51
+Ahmednagar,Ahmednagar,Soyabean,37.01,40.8
+Ahmednagar,Ahmednagar,Wheat,23.0,26.29
+Ahmednagar,Newasa(Ghodegaon),Onion,5.0,16.0
+Ahmednagar,Pathardi,Bajra,26.5,29.5
+Ahmednagar,Ahmednagar,Cotton,68.5,71.0
+Ahmednagar,Ahmednagar,Jowar,25.0,29.0
+Ahmednagar,Ahmednagar,Wheat,24.0,31.0
+Ahmednagar,Rahata,Beans,30.0,30.0
+Ahmednagar,Ahmednagar,Beetroot,5.0,10.0
+Ahmednagar,Ahmednagar,Bengal Gram,50.0,52.35
+Ahmednagar,Ahmednagar,Bhindi,30.0,40.0
+Ahmednagar,Ahmednagar,Bitter gourd,30.0,30.0
+Ahmednagar,Ahmednagar,Bottle gourd,10.0,10.0
+Ahmednagar,Ahmednagar,Brinjal,5.0,15.0
+Ahmednagar,Ahmednagar,Cabbage,4.0,4.0
+Ahmednagar,Ahmednagar,Carrot,20.0,20.0
+Ahmednagar,Ahmednagar,Cauliflower,4.0,10.0
+Ahmednagar,Ahmednagar,Chilly Capsicum,10.0,20.0
+Ahmednagar,Ahmednagar,Coriander,0.02,0.05
+Ahmednagar,Ahmednagar,Cucumbar,5.0,10.0
+Ahmednagar,Ahmednagar,Drumstick,5.0,10.0
+Ahmednagar,Ahmednagar,Garlic,40.0,60.0
+Ahmednagar,Ahmednagar,Ginger,30.0,40.0
+Ahmednagar,Ahmednagar,Grapes,35.0,35.0
+Ahmednagar,Ahmednagar,Green Chilli,25.0,45.0
+Ahmednagar,Ahmednagar,Green Peas,30.0,45.0
+Ahmednagar,Ahmednagar,Guar,100.0,100.0
+Ahmednagar,Ahmednagar,Jowar,25.86,25.86
+Ahmednagar,Ahmednagar,Karbuja,10.0,15.0
+Ahmednagar,Ahmednagar,Lime,50.0,100.0
+Ahmednagar,Ahmednagar,Little gourd,25.0,25.0
+Ahmednagar,Ahmednagar,Methi,0.1,0.1
+Ahmednagar,Ahmednagar,Onion Green,0.08,0.12
+Ahmednagar,Ahmednagar,Papaya,5.0,7.0
+Ahmednagar,Ahmednagar,Potato,5.0,15.0
+Ahmednagar,Ahmednagar,Ridgeguard,40.0,40.0
+Ahmednagar,Ahmednagar,Soyabean,40.2,40.2
+Ahmednagar,Ahmednagar,Spinach,0.06,0.06
+Ahmednagar,Ahmednagar,Tomato,5.0,6.0
+Ahmednagar,Ahmednagar,Wheat,24.0,25.66
+Ahmednagar,Rahuri,Potato,6.0,18.0
+Ahmednagar,Rahuri(Vambori),Arhar,60.0,70.0
+Ahmednagar,Ahmednagar,Bengal Gram,48.0,48.0
+Ahmednagar,Ahmednagar,Onion,2.0,17.0
+Ahmednagar,Ahmednagar,Wheat,25.25,26.0
+Ahmednagar,Sangamner,Onion,4.0,14.75
+Ahmednagar,Shevgaon,Arhar,69.0,70.0
+Ahmednagar,Ahmednagar,Bajra,26.5,30.0
+Ahmednagar,Ahmednagar,Bengal Gram,49.0,50.0
+Ahmednagar,Ahmednagar,Soyabean,38.51,39.0
+Ahmednagar,Ahmednagar,Wheat,24.5,25.5
+Ahmednagar,Shevgaon(Bodhegaon),Bajra,24.0,25.0
+Ahmednagar,Ahmednagar,Jowar,18.0,18.0
+Ahmednagar,Ahmednagar,Wheat,26.0,27.0
+Ahmednagar,Shree Sairaj Krushi Market,Onion,6.0,16.5
+Ahmednagar,Shrirampur,Bhindi,25.0,35.0
+Ahmednagar,Ahmednagar,Bitter gourd,25.0,30.0
+Ahmednagar,Ahmednagar,Bottle gourd,5.0,9.0
+Ahmednagar,Ahmednagar,Brinjal,6.0,9.0
+Ahmednagar,Ahmednagar,Cabbage,1.0,3.0
+Ahmednagar,Ahmednagar,Carrot,8.0,12.0
+Ahmednagar,Ahmednagar,Cauliflower,2.0,4.0
+Ahmednagar,Ahmednagar,Chikoos,15.0,25.0
+Ahmednagar,Ahmednagar,Chilly Capsicum,20.0,30.0
+Ahmednagar,Ahmednagar,Coriander,0.02,0.04
+Ahmednagar,Ahmednagar,Cucumbar,8.0,12.0
+Ahmednagar,Ahmednagar,Drumstick,8.0,10.0
+Ahmednagar,Ahmednagar,Ginger,10.0,22.0
+Ahmednagar,Ahmednagar,Karbuja,10.0,15.0
+Ahmednagar,Ahmednagar,Lime,80.0,130.0
+Ahmednagar,Ahmednagar,Methi,0.05,0.07
+Ahmednagar,Ahmednagar,Onion Green,0.04,0.06
+Ahmednagar,Ahmednagar,Peas Wet,30.0,40.0
+Ahmednagar,Ahmednagar,Potato,10.0,18.0
+Ahmednagar,Ahmednagar,Raddish,0.03,0.05
+Ahmednagar,Ahmednagar,Ridgeguard,15.0,25.0
+Ahmednagar,Ahmednagar,Spinach,0.03,0.05
+Ahmednagar,Ahmednagar,Tamarind Fruit,20.0,52.0
+Ahmednagar,Ahmednagar,Tomato,5.0,8.0
+Ahmednagar,Ahmednagar,Water Melon,8.0,12.0
+Akola,Akola,Arhar,55.0,75.35
+Akola,Akola,nan,75.5,76.95
+Akola,Akola,Bengal Gram,55.5,55.6
+Akola,Akola,nan,47.3,54.3
+Akola,Akola,nan,54.45,55.4
+Akola,Akola,Garlic,40.0,75.0
+Akola,Akola,Ginger,30.0,34.0
+Akola,Akola,Jowar,19.6,20.05
+Akola,Akola,Onion,6.0,16.0
+Akola,Akola,Potato,10.0,16.0
+Akola,Akola,Soyabean,34.0,41.55
+Akola,Akola,Wheat,18.0,22.0
+Akola,Akola,nan,22.85,29.0
+Akola,Murtizapur,Arhar,68.5,73.35
+Akola,Akola,Soyabean,34.5,40.4
+Akola,Akola,Wheat,25.1,29.3
+Amarawati,Achalpur,Arhar,68.0,73.0
+Amarawati,Amarawati,Wheat,25.0,27.0
+Amarawati,Amarawati,Arhar,71.0,73.0
+Amarawati,Amarawati,Bengal Gram,54.4,56.25
+Amarawati,Amarawati,Black Gram,61.0,63.0
+Amarawati,Amarawati,Cotton,72.5,75.75
+Amarawati,Amarawati,Green Gram,70.0,73.0
+Amarawati,Amarawati,Jowar,18.0,21.0
+Amarawati,Amarawati,Maize,22.25,23.0
+Amarawati,Amarawati,Sesamum,100.0,110.0
+Amarawati,Amarawati,Soyabean,38.5,40.35
+Amarawati,Amarawati,Wheat,28.0,30.0
+Amarawati,Amrawati(Frui & Veg. Market),Apple,100.0,140.0
+Amarawati,Amarawati,Beetroot,10.0,12.0
+Amarawati,Amarawati,Bhindi,22.0,28.0
+Amarawati,Amarawati,Bitter gourd,30.0,34.0
+Amarawati,Amarawati,Brinjal,5.0,7.0
+Amarawati,Amarawati,Cabbage,6.0,8.0
+Amarawati,Amarawati,Carrot,10.0,14.0
+Amarawati,Amarawati,Cauliflower,10.0,14.0
+Amarawati,Amarawati,Chikoos,30.0,40.0
+Amarawati,Amarawati,Chilly Capsicum,20.0,25.0
+Amarawati,Amarawati,Coriander,10.0,12.0
+Amarawati,Amarawati,Cucumbar,10.0,14.0
+Amarawati,Amarawati,Garlic,30.0,80.0
+Amarawati,Amarawati,Ginger,26.0,36.0
+Amarawati,Amarawati,Grapes,30.0,50.0
+Amarawati,Amarawati,Green Chilli,35.0,40.0
+Amarawati,Amarawati,Guar,45.0,50.0
+Amarawati,Amarawati,Karbuja,12.0,16.0
+Amarawati,Amarawati,Lime,70.0,100.0
+Amarawati,Amarawati,Mango,50.0,60.0
+Amarawati,Amarawati,Methi,9.0,13.0
+Amarawati,Amarawati,Onion,6.0,18.0
+Amarawati,Amarawati,Orange,32.0,42.0
+Amarawati,Amarawati,Papaya,20.0,25.0
+Amarawati,Amarawati,Pomegranate,100.0,140.0
+Amarawati,Amarawati,Potato,8.0,17.0
+Amarawati,Amarawati,Pumpkin,8.0,10.0
+Amarawati,Amarawati,Spinach,6.0,7.0
+Amarawati,Amarawati,Tomato,5.0,7.0
+Amarawati,Dhamngaon-Railway,Arhar,65.0,75.0
+Amarawati,Amarawati,Bengal Gram,50.0,54.0
+Amarawati,Amarawati,Wheat,24.0,26.0
+Buldhana,Chikali,Arhar,64.5,74.0
+Buldhana,Buldhana,Bengal Gram,47.0,53.0
+Buldhana,Buldhana,Soyabean,35.0,41.0
+Buldhana,Buldhana,Wheat,23.0,27.5
+Buldhana,Deoulgaon Raja,Arhar,65.0,69.01
+Buldhana,Buldhana,Bajra,24.0,24.0
+Buldhana,Buldhana,Bengal Gram,50.0,52.25
+Buldhana,Buldhana,Cotton,72.0,76.45
+Buldhana,Buldhana,Jowar,20.0,22.67
+Buldhana,Buldhana,Maize,19.0,19.0
+Buldhana,Buldhana,Soyabean,36.25,36.25
+Buldhana,Buldhana,Wheat,24.0,28.0
+Buldhana,Lonar,Arhar,69.0,73.26
+Buldhana,Buldhana,Bengal Gram,51.5,54.39
+Buldhana,Buldhana,Jowar,17.0,20.6
+Buldhana,Buldhana,Soyabean,37.5,41.18
+Buldhana,Buldhana,Wheat,24.0,26.5
+Buldhana,Malkapur,Arhar,67.5,75.0
+Buldhana,Buldhana,Bengal Gram,50.0,53.1
+Buldhana,Buldhana,nan,54.4,55.5
+Buldhana,Buldhana,Jowar,18.6,23.36
+Buldhana,Buldhana,Maize,18.0,21.7
+Buldhana,Buldhana,Soyabean,35.0,40.51
+Buldhana,Buldhana,Wheat,24.5,30.0
+Dhule,Dhule,Arhar,59.25,66.0
+Dhule,Dhule,Bajra,16.5,26.24
+Dhule,Dhule,nan,26.25,28.23
+Dhule,Dhule,Bengal Gram,49.65,54.39
+Dhule,Dhule,nan,54.4,55.6
+Dhule,Dhule,Cowpea,64.5,70.75
+Dhule,Dhule,Jowar,16.0,23.0
+Dhule,Dhule,nan,21.65,25.85
+Dhule,Dhule,Maize,18.0,22.24
+Dhule,Dhule,nan,22.25,22.5
+Dhule,Dhule,Onion,3.5,16.0
+Dhule,Dhule,Soyabean,38.0,38.0
+Dhule,Dhule,Wheat,20.0,22.74
+Dhule,Dhule,nan,24.25,28.0
+Jalana,Ambad (Vadigodri),Arhar,62.75,72.51
+Jalana,Jalana,Bajra,26.25,31.0
+Jalana,Jalana,Bengal Gram,49.0,52.6
+Jalana,Jalana,Jowar,18.21,27.0
+Jalana,Jalana,Soyabean,35.0,38.91
+Jalana,Jalana,Wheat,23.7,30.0
+Jalana,Bhokardan,Maize,19.0,21.5
+Jalana,Jalana,Soyabean,40.0,41.5
+Jalana,Jalana,Wheat,23.0,27.0
+Jalana,Jalana,Arhar,79.0,79.0
+Jalana,Jalana,Bajra,25.5,25.5
+Jalana,Jalana,nan,27.5,28.5
+Jalana,Jalana,Bengal Gram,58.0,83.5
+Jalana,Jalana,nan,53.0,53.0
+Jalana,Jalana,nan,54.5,55.5
+Jalana,Jalana,Gur,30.0,33.5
+Jalana,Jalana,nan,35.0,41.51
+Jalana,Jalana,Jowar,20.0,38.15
+Jalana,Jalana,Maize,18.0,22.0
+Jalana,Jalana,Mustard,56.5,56.5
+Jalana,Jalana,Soyabean,32.5,40.0
+Jalana,Jalana,Wheat,24.0,28.25
+Jalana,Partur,Arhar,68.5,71.0
+Jalana,Jalana,Bengal Gram,50.0,54.3
+Jalana,Jalana,Jowar,17.5,22.25
+Jalana,Jalana,Wheat,23.0,25.52
+Jalgaon,Bhusaval,Beetroot,15.0,15.0
+Jalgaon,Jalgaon,Bhindi,30.0,35.0
+Jalgaon,Jalgaon,Brinjal,10.0,15.0
+Jalgaon,Jalgaon,Cabbage,10.0,10.0
+Jalgaon,Jalgaon,Cauliflower,10.0,15.0
+Jalgaon,Jalgaon,Coriander,20.0,30.0
+Jalgaon,Jalgaon,Cucumbar,10.0,15.0
+Jalgaon,Jalgaon,Drumstick,20.0,20.0
+Jalgaon,Jalgaon,Green Chilli,42.0,50.0
+Jalgaon,Jalgaon,Lime,90.0,90.0
+Jalgaon,Jalgaon,Mango,30.0,40.0
+Jalgaon,Jalgaon,Methi,8.0,12.0
+Jalgaon,Jalgaon,Onion,10.0,15.0
+Jalgaon,Jalgaon,Onion Green,15.0,15.0
+Jalgaon,Jalgaon,Papaya,15.0,15.0
+Jalgaon,Jalgaon,Peas Wet,25.0,30.0
+Jalgaon,Jalgaon,Potato,14.0,20.0
+Jalgaon,Jalgaon,Spinach,5.0,10.0
+Jalgaon,Jalgaon,Tomato,9.0,12.0
+Jalgaon,Jalgaon,Water Melon,5.0,10.0
+Jalgaon,Jalgaon,Beetroot,5.0,10.0
+Jalgaon,Jalgaon,Bengal Gram,42.0,52.0
+Jalgaon,Jalgaon,Bhindi,20.0,35.0
+Jalgaon,Jalgaon,Bitter gourd,20.0,30.0
+Jalgaon,Jalgaon,Brinjal,5.0,10.0
+Jalgaon,Jalgaon,Cabbage,3.0,5.0
+Jalgaon,Jalgaon,Carrot,10.0,13.0
+Jalgaon,Jalgaon,Cauliflower,5.0,8.0
+Jalgaon,Jalgaon,Chikoos,40.0,40.0
+Jalgaon,Jalgaon,Coriander,10.0,15.0
+Jalgaon,Jalgaon,Cucumbar,4.0,8.0
+Jalgaon,Jalgaon,Drumstick,25.0,30.0
+Jalgaon,Jalgaon,Ginger,15.0,25.0
+Jalgaon,Jalgaon,Grapes,50.0,72.0
+Jalgaon,Jalgaon,Guar,50.0,60.0
+Jalgaon,Jalgaon,Jowar,25.0,34.65
+Jalgaon,Jalgaon,Lime,60.0,120.0
+Jalgaon,Jalgaon,Maize,18.75,18.75
+Jalgaon,Jalgaon,Mango,15.0,25.0
+Jalgaon,Jalgaon,Methi,10.0,15.0
+Jalgaon,Jalgaon,Onion,5.0,13.3
+Jalgaon,Jalgaon,Papaya,15.0,15.0
+Jalgaon,Jalgaon,Pomegranate,50.0,160.0
+Jalgaon,Jalgaon,Potato,10.0,15.0
+Jalgaon,Jalgaon,Spinach,15.0,15.0
+Jalgaon,Jalgaon,Tomato,4.0,7.0
+Jalgaon,Jalgaon,Wheat,23.65,25.0
+Jalgaon,Jalgaon(Masawat),Bengal Gram,51.25,51.75
+Jalgaon,Jalgaon,Jowar,22.5,23.0
+Jalgaon,Jalgaon,Maize,18.5,19.0
+Jalgaon,Jalgaon,Wheat,26.0,26.75
+Jalgaon,Pachora,Bajra,22.91,26.11
+Jalgaon,Jalgaon,nan,26.4,29.0
+Jalgaon,Jalgaon,Bengal Gram,42.0,52.91
+Jalgaon,Jalgaon,Jowar,19.0,23.21
+Jalgaon,Jalgaon,nan,19.0,30.0
+Jalgaon,Jalgaon,Maize,17.0,20.0
+Jalgaon,Jalgaon,Soyabean,35.0,39.0
+Jalgaon,Jalgaon,Sunflower,32.0,55.01
+Jalgaon,Jalgaon,Wheat,23.0,30.0
+Jalgaon,Pachora(Bhadgaon),Jowar,19.0,23.21
+Jalgaon,Jalgaon,Maize,17.0,20.0
+Jalgaon,Raver,Arhar,65.41,65.41
+Jalgaon,Jalgaon,Bengal Gram,50.5,51.25
+Jalgaon,Jalgaon,Wheat,25.7,25.7
+Kolhapur,Gadhinglaj,Chili Red,110.0,610.0
+Kolhapur,Kolhapur,Apple,40.0,175.0
+Kolhapur,Kolhapur,Brinjal,5.0,20.0
+Kolhapur,Kolhapur,Cabbage,3.0,5.0
+Kolhapur,Kolhapur,Cauliflower,4.0,10.0
+Kolhapur,Kolhapur,Coriander,10.0,40.0
+Kolhapur,Kolhapur,Green Chilli,30.0,65.0
+Kolhapur,Kolhapur,Lime,50.0,125.0
+Kolhapur,Kolhapur,Onion,6.0,18.0
+Kolhapur,Kolhapur,Tomato,5.0,13.0
+Latur,Aurad Shahajani,Bengal Gram,54.51,56.71
+Latur,Latur,Black Gram,44.25,44.25
+Latur,Latur,Jowar,18.5,23.5
+Latur,Latur,Safflower,56.5,57.99
+Latur,Latur,nan,58.0,58.7
+Latur,Latur,Soyabean,39.5,40.8
+Latur,Latur,Wheat,25.0,27.81
+Latur,Chakur,Arhar,70.41,72.76
+Latur,Latur,Bengal Gram,52.0,53.0
+Latur,Latur,Soyabean,39.31,40.24
+Latur,Latur,Wheat,23.87,27.24
+Latur,Latur(Murud),Bengal Gram,50.0,53.51
+Latur,Latur,Soyabean,37.0,41.0
+Mumbai,Mumbai,Almond,750.0,1100.0
+Mumbai,Mumbai,Arecanut,500.0,800.0
+Mumbai,Mumbai,Arhar Dal,72.0,150.0
+Mumbai,Mumbai,Bajra,28.0,45.0
+Mumbai,Mumbai,Beans,24.0,30.0
+Mumbai,Mumbai,Beetroot,8.0,12.0
+Mumbai,Mumbai,Bengal Gram Dal,75.0,95.0
+Mumbai,Mumbai,Bengal Gram,70.0,88.0
+Mumbai,Mumbai,Bhindi,40.0,50.0
+Mumbai,Mumbai,Bitter gourd,20.0,30.0
+Mumbai,Mumbai,Black Gram,90.0,110.0
+Mumbai,Mumbai,Black Gram Dal,96.0,130.0
+Mumbai,Mumbai,Black pepper,650.0,855.0
+Mumbai,Mumbai,Bottle gourd,8.0,12.0
+Mumbai,Mumbai,Brinjal,10.0,16.0
+Mumbai,Mumbai,Cabbage,3.0,5.0
+Mumbai,Mumbai,Cardamoms,1400.0,2250.0
+Mumbai,Mumbai,Carrot,12.0,20.0
+Mumbai,Mumbai,Cashewnuts,800.0,1100.0
+Mumbai,Mumbai,Cauliflower,6.0,10.0
+Mumbai,Mumbai,Chili Red,140.0,280.0
+Mumbai,Mumbai,Chilly Capsicum,12.0,24.0
+Mumbai,Mumbai,Cinamon,400.0,750.0
+Mumbai,Mumbai,Coconut,13.0,32.0
+Mumbai,Mumbai,Coriander,5.0,10.0
+Mumbai,Mumbai,Corriander seed,90.0,210.0
+Mumbai,Mumbai,Cowpea,88.0,110.0
+Mumbai,Mumbai,Cucumbar,14.0,18.0
+Mumbai,Mumbai,Cummin Seed,180.0,350.0
+Mumbai,Mumbai,Drumstick,12.0,24.0
+Mumbai,Mumbai,Elephant Yam,60.0,70.0
+Mumbai,Mumbai,French Beans,30.0,46.0
+Mumbai,Mumbai,Ghee,650.0,800.0
+Mumbai,Mumbai,Ginger,325.0,485.0
+Mumbai,Mumbai,Ginger,24.0,36.0
+Mumbai,Mumbai,Green Chilli,40.0,70.0
+Mumbai,Mumbai,Green Gram,88.0,120.0
+Mumbai,Mumbai,Green Gram Dal,90.0,130.0
+Mumbai,Mumbai,Green Peas,195.0,225.0
+Mumbai,Mumbai,Ground Nut Seed,92.0,125.0
+Mumbai,Mumbai,Guar,30.0,60.0
+Mumbai,Mumbai,Gur,48.5,54.5
+Mumbai,Mumbai,Jowar,27.0,60.0
+Mumbai,Mumbai,Lentil,65.0,90.0
+Mumbai,Mumbai,Lime,30.0,50.0
+Mumbai,Mumbai,Little gourd,20.0,50.0
+Mumbai,Mumbai,Maize,28.0,39.0
+Mumbai,Mumbai,Mango,40.0,50.0
+Mumbai,Mumbai,Masur Dal,73.0,80.0
+Mumbai,Mumbai,Methi Seeds,63.0,90.0
+Mumbai,Mumbai,Methi,5.0,8.0
+Mumbai,Mumbai,Mint,5.0,7.0
+Mumbai,Mumbai,Mustard,62.0,70.0
+Mumbai,Mumbai,Onion Green,3.0,4.0
+Mumbai,Mumbai,Peas Wet,40.0,46.0
+Mumbai,Mumbai,Pumpkin,8.0,12.0
+Mumbai,Mumbai,Raddish,25.0,35.0
+Mumbai,Mumbai,Ridgeguard,20.0,30.0
+Mumbai,Mumbai,Sabu Dan,47.0,57.0
+Mumbai,Mumbai,Sesamum,125.0,170.0
+Mumbai,Mumbai,Snakeguard,40.0,50.0
+Mumbai,Mumbai,Soanf,120.0,330.0
+Mumbai,Mumbai,Spinach,4.0,6.0
+Mumbai,Mumbai,Sugar,39.0,47.0
+Mumbai,Mumbai,Sweet Pumpkin,5.0,7.0
+Mumbai,Mumbai,Tamarind Fruit,85.0,155.0
+Mumbai,Mumbai,Tomato,10.0,14.0
+Mumbai,Mumbai,Turmeric,180.0,240.0
+Mumbai,Mumbai,Wheat,30.0,60.0
+Mumbai,Mumbai- Fruit Market,Chikoos,50.0,60.0
+Mumbai,Mumbai,Grapes,65.0,85.0
+Mumbai,Mumbai,Guava,30.0,60.0
+Mumbai,Mumbai,Karbuja,25.0,30.0
+Mumbai,Mumbai,Mango,250.0,800.0
+Mumbai,Mumbai,nan,150.0,200.0
+Mumbai,Mumbai,Orange,35.0,60.0
+Mumbai,Mumbai,Papaya,15.0,30.0
+Mumbai,Mumbai,Pineapple,35.0,60.0
+Mumbai,Mumbai,Pomegranate,100.0,160.0
+Mumbai,Mumbai,Water Melon,10.0,15.0
+Mumbai,Vashi New Mumbai,Onion,9.0,17.0
+Mumbai,Mumbai,Potato,10.0,18.0
+Nagpur,Kalmeshwar,Bhindi,30.65,35.0
+Nagpur,Nagpur,Brinjal,4.3,8.0
+Nagpur,Nagpur,Cabbage,2.4,5.0
+Nagpur,Nagpur,Cauliflower,2.3,5.0
+Nagpur,Nagpur,Coriander,10.15,15.0
+Nagpur,Nagpur,Green Chilli,35.25,40.0
+Nagpur,Nagpur,Methi,10.2,15.0
+Nagpur,Nagpur,Raddish,10.6,15.0
+Nagpur,Nagpur,Spinach,4.45,8.0
+Nagpur,Nagpur,Tomato,4.1,8.0
+Nagpur,Kamthi,Bhindi,30.0,40.0
+Nagpur,Nagpur,Bitter gourd,35.0,45.0
+Nagpur,Nagpur,Bottle gourd,10.0,20.0
+Nagpur,Nagpur,Brinjal,6.0,10.0
+Nagpur,Nagpur,Cabbage,3.0,7.0
+Nagpur,Nagpur,Carrot,15.0,25.0
+Nagpur,Nagpur,Cauliflower,5.0,15.0
+Nagpur,Nagpur,Chilly Capsicum,25.0,35.0
+Nagpur,Nagpur,Coriander,25.0,35.0
+Nagpur,Nagpur,Cucumbar,10.0,20.0
+Nagpur,Nagpur,Ginger,30.0,50.0
+Nagpur,Nagpur,Green Chilli,25.0,35.0
+Nagpur,Nagpur,Green Peas,25.0,35.0
+Nagpur,Nagpur,Guar,45.0,55.0
+Nagpur,Nagpur,Mango,40.0,50.0
+Nagpur,Nagpur,Onion Green,5.0,15.0
+Nagpur,Nagpur,Pumpkin,6.0,10.0
+Nagpur,Nagpur,Spinach,5.0,15.0
+Nagpur,Nagpur,Tomato,1.0,5.0
+Nagpur,Nagpur,Apple,110.0,130.0
+Nagpur,Nagpur,Banana,4.5,5.5
+Nagpur,Nagpur,Beetroot,5.0,10.0
+Nagpur,Nagpur,Bengal Gram,50.0,54.35
+Nagpur,Nagpur,Bhindi,25.0,30.0
+Nagpur,Nagpur,Bitter gourd,30.0,35.0
+Nagpur,Nagpur,Bottle gourd,5.0,7.0
+Nagpur,Nagpur,Brinjal,3.0,5.0
+Nagpur,Nagpur,Cabbage,2.0,3.0
+Nagpur,Nagpur,Carrot,8.0,15.0
+Nagpur,Nagpur,Cauliflower,5.0,8.0
+Nagpur,Nagpur,Chikoos,10.0,30.0
+Nagpur,Nagpur,Chili Red,100.0,130.0
+Nagpur,Nagpur,Chilly Capsicum,10.0,30.0
+Nagpur,Nagpur,Coriander,15.0,25.0
+Nagpur,Nagpur,Corriander seed,60.0,62.0
+Nagpur,Nagpur,Cucumbar,8.0,10.0
+Nagpur,Nagpur,Garlic,20.0,80.0
+Nagpur,Nagpur,Ginger,20.0,32.0
+Nagpur,Nagpur,Grapes,40.0,60.0
+Nagpur,Nagpur,Green Chilli,15.0,25.0
+Nagpur,Nagpur,Green Peas,20.0,30.0
+Nagpur,Nagpur,Guar,30.0,35.0
+Nagpur,Nagpur,Guava,20.0,30.0
+Nagpur,Nagpur,Jack Fruit,15.0,20.0
+Nagpur,Nagpur,Jowar,30.0,32.0
+Nagpur,Nagpur,Lime,50.0,60.0
+Nagpur,Nagpur,Little gourd,15.0,25.0
+Nagpur,Nagpur,Mango,35.0,40.0
+Nagpur,Nagpur,Methi Seeds,10.0,15.0
+Nagpur,Nagpur,Onion,10.0,18.0
+Nagpur,Nagpur,nan,10.0,15.0
+Nagpur,Nagpur,Pineapple,10.0,30.0
+Nagpur,Nagpur,Pointed gourd,25.0,35.0
+Nagpur,Nagpur,Pomegranate,20.0,60.0
+Nagpur,Nagpur,Potato,12.0,18.0
+Nagpur,Nagpur,Pumpkin,5.0,8.0
+Nagpur,Nagpur,Raddish,10.0,20.0
+Nagpur,Nagpur,Soyabean,36.0,40.0
+Nagpur,Nagpur,Spinach,8.0,10.0
+Nagpur,Nagpur,Sweet Potato,10.0,12.0
+Nagpur,Nagpur,Tomato,3.0,5.0
+Nagpur,Nagpur,nan,5.0,12.0
+Nagpur,Nagpur,Wheat,24.0,25.2
+Nagpur,Nagpur,nan,32.0,35.0
+Nagpur,Ramtek,Cauliflower,4.0,6.0
+Nagpur,Savner,Arhar,66.0,72.77
+Nagpur,Nagpur,Bengal Gram,52.0,53.5
+Nagpur,Nagpur,Cotton,71.0,71.0
+Nagpur,Nagpur,Maize,20.25,21.25
+Nagpur,Nagpur,Soyabean,33.52,38.0
+Nagpur,Nagpur,Wheat,23.0,24.49
+Nagpur,Umared,Arhar,55.0,72.95
+Nagpur,Nagpur,Bengal Gram,51.0,54.1
+Nagpur,Nagpur,nan,54.5,55.5
+Nagpur,Nagpur,Corriander seed,50.0,64.0
+Nagpur,Nagpur,Cotton,66.0,72.8
+Nagpur,Nagpur,Rice,38.0,51.0
+Nagpur,Nagpur,Wheat,24.0,28.0
+Nandurbar,Taloda,Wheat,25.0,26.6
+Nashik,Chandvad,Onion,7.25,14.16
+Nashik,Lasalgaon,Onion,9.0,18.3
+Nashik,Nashik,nan,8.0,13.71
+Nashik,Lasalgaon(Niphad),Arhar,60.0,66.99
+Nashik,Nashik,Bajra,27.0,28.41
+Nashik,Nashik,Jowar,24.0,24.0
+Nashik,Nashik,Maize,21.0,21.0
+Nashik,Nashik,nan,22.26,23.69
+Nashik,Nashik,Onion,10.0,16.5
+Nashik,Nashik,nan,8.0,15.9
+Nashik,Nashik,Soyabean,36.01,41.2
+Nashik,Nashik,Tamarind Fruit,30.52,30.52
+Nashik,Nashik,Wheat,24.51,26.96
+Nashik,Lasalgaon(Vinchur),Onion,10.0,17.0
+Nashik,Nashik,nan,8.0,13.42
+Nashik,Manmad,Onion,5.0,15.01
+Nashik,Nashik,nan,4.0,14.01
+Nashik,Nasik,Banana,9.0,20.0
+Nashik,Nashik,Bhindi,16.7,33.35
+Nashik,Nashik,Bitter gourd,33.35,41.7
+Nashik,Nashik,Bottle gourd,5.35,12.0
+Nashik,Nashik,Brinjal,15.0,40.0
+Nashik,Nashik,Cabbage,1.7,3.75
+Nashik,Nashik,Cauliflower,3.6,9.7
+Nashik,Nashik,Chikoos,15.0,45.0
+Nashik,Nashik,Chilly Capsicum,22.5,27.5
+Nashik,Nashik,Cucumbar,10.0,20.0
+Nashik,Nashik,Garlic,60.0,126.0
+Nashik,Nashik,Guar,75.0,110.0
+Nashik,Nashik,Guava,30.0,60.0
+Nashik,Nashik,Karbuja,8.0,22.0
+Nashik,Nashik,Lime,37.5,70.0
+Nashik,Nashik,Onion,6.0,16.0
+Nashik,Nashik,Orange,25.0,45.0
+Nashik,Nashik,Pomegranate,20.0,160.0
+Nashik,Nashik,Potato,12.0,20.0
+Nashik,Nashik,Ridgeguard,29.2,38.75
+Nashik,Nashik,Sweet Pumpkin,7.0,15.0
+Nashik,Nashik,Tender Coconut,30.0,50.0
+Nashik,Pimpalgaon,Onion,4.0,17.75
+Nashik,Nashik,nan,5.5,13.8
+Nashik,Pimpalgaon Baswant(Saykheda),Onion,7.0,14.21
+Nashik,Yeola,Onion,5.0,14.01
+Nashik,Nashik,nan,4.6,13.05
+Pune,Junnar(Narayangaon),Beans,10.0,61.5
+Pune,Pune,Beetroot,3.0,14.0
+Pune,Pune,Bhindi,5.0,36.5
+Pune,Pune,Bitter gourd,5.0,41.0
+Pune,Pune,Bottle gourd,3.0,15.5
+Pune,Pune,Brinjal,17.0,55.0
+Pune,Pune,Cabbage,1.5,5.0
+Pune,Pune,Carrot,6.5,17.0
+Pune,Pune,Cauliflower,2.0,10.0
+Pune,Pune,Chilly Capsicum,5.0,30.0
+Pune,Pune,Drumstick,8.0,25.0
+Pune,Pune,Ginger,30.0,35.0
+Pune,Pune,Guar,10.0,100.0
+Pune,Pune,Little gourd,10.0,45.0
+Pune,Pune,Onion,4.0,18.0
+Pune,Pune,Potato,14.0,18.0
+Pune,Pune,Ridgeguard,20.0,35.0
+Pune,Junnar(Otur),Beans,10.0,52.5
+Pune,Pune,Beetroot,5.0,11.6
+Pune,Pune,Bhindi,10.0,40.1
+Pune,Pune,Bottle gourd,5.0,13.0
+Pune,Pune,Brinjal,5.0,27.5
+Pune,Pune,Cabbage,2.0,6.0
+Pune,Pune,Carrot,5.0,14.0
+Pune,Pune,Cauliflower,3.0,8.5
+Pune,Pune,Chilly Capsicum,10.0,32.0
+Pune,Pune,Cucumbar,5.0,18.5
+Pune,Pune,Drumstick,5.0,25.1
+Pune,Pune,Green Chilli,20.0,62.5
+Pune,Pune,Green Peas,10.0,50.1
+Pune,Pune,Guar,30.0,70.0
+Pune,Pune,Little gourd,10.0,41.5
+Pune,Pune,Potato,5.0,15.1
+Pune,Pune,Astera,0.04,0.08
+Pune,Pune,Bajra,32.0,35.0
+Pune,Pune,Bengal Gram,74.0,84.0
+Pune,Pune,Black Gram,88.0,100.0
+Pune,Pune,Chrysanthemum,0.2,0.4
+Pune,Pune,Corriander seed,100.0,140.0
+Pune,Pune,Green Gram,89.0,98.0
+Pune,Pune,Green Peas,105.0,123.0
+Pune,Pune,Jasmine,2.0,2.4
+Pune,Pune,Jowar,45.0,53.0
+Pune,Pune,Kakada,1.0,1.5
+Pune,Pune,Lentil,69.0,73.0
+Pune,Pune,Maize,24.0,26.0
+Pune,Pune,Marigold,0.05,0.15
+Pune,Pune,Ragi,43.0,51.0
+Pune,Pune(Manjri),Beans,50.0,60.0
+Pune,Pune,Bhindi,40.0,60.0
+Pune,Pune,Bitter gourd,30.0,50.0
+Pune,Pune,Bottle gourd,15.0,20.0
+Pune,Pune,Brinjal,13.0,26.0
+Pune,Pune,Cabbage,4.0,6.0
+Pune,Pune,Cauliflower,4.0,9.0
+Pune,Pune,Chikoos,30.0,50.0
+Pune,Pune,Chilly Capsicum,10.0,30.0
+Pune,Pune,Coriander,0.03,0.12
+Pune,Pune,Cucumbar,30.0,50.0
+Pune,Pune,Drumstick,30.0,40.0
+Pune,Pune,Grapes,40.0,60.0
+Pune,Pune,Green Chilli,40.0,50.0
+Pune,Pune,Guar,70.0,90.0
+Pune,Pune,Guava,20.0,40.0
+Pune,Pune,Karbuja,20.0,40.0
+Pune,Pune,Methi,0.03,0.1
+Pune,Pune,Onion,13.0,22.0
+Pune,Pune,Onion Green,0.03,0.08
+Pune,Pune,Papaya,10.0,20.0
+Pune,Pune,Potato,15.0,25.0
+Pune,Pune,Raddish,0.05,0.12
+Pune,Pune,Rajgir,0.02,0.05
+Pune,Pune,Ridgeguard,40.0,50.0
+Pune,Pune,Spinach,0.03,0.06
+Pune,Pune,Tomato,4.0,14.0
+Pune,Pune,Water Melon,10.0,30.0
+Pune,Pune(Moshi),Apple,120.0,120.0
+Pune,Pune,Banana,20.0,60.0
+Pune,Pune,Beans,25.0,30.0
+Pune,Pune,Beetroot,20.0,30.0
+Pune,Pune,Bhindi,20.0,30.0
+Pune,Pune,Bitter gourd,30.0,40.0
+Pune,Pune,Bottle gourd,20.0,25.0
+Pune,Pune,Brinjal,10.0,20.0
+Pune,Pune,Cabbage,8.0,10.0
+Pune,Pune,Carrot,25.0,35.0
+Pune,Pune,Cauliflower,8.0,10.0
+Pune,Pune,Chikoos,40.0,40.0
+Pune,Pune,Chilly Capsicum,20.0,30.0
+Pune,Pune,Coriander,0.06,0.1
+Pune,Pune,Cucumbar,10.0,20.0
+Pune,Pune,Drumstick,10.0,15.0
+Pune,Pune,Garlic,50.0,60.0
+Pune,Pune,Ginger,30.0,40.0
+Pune,Pune,Grapes,60.0,70.0
+Pune,Pune,Green Chilli,20.0,30.0
+Pune,Pune,Guar,55.0,75.0
+Pune,Pune,Lime,90.0,100.0
+Pune,Pune,Little gourd,35.0,35.0
+Pune,Pune,Mango,100.0,100.0
+Pune,Pune,Mango,20.0,40.0
+Pune,Pune,Methi,0.09,0.1
+Pune,Pune,Onion,3.0,14.0
+Pune,Pune,Onion Green,0.1,0.15
+Pune,Pune,Orange,45.0,45.0
+Pune,Pune,Papaya,20.0,25.0
+Pune,Pune,Peas Wet,40.0,50.0
+Pune,Pune,Pineapple,40.0,40.0
+Pune,Pune,Pomegranate,100.0,120.0
+Pune,Pune,Potato,10.0,16.0
+Pune,Pune,Raddish,0.1,0.1
+Pune,Pune,Ridgeguard,20.0,30.0
+Pune,Pune,Spinach,0.05,0.07
+Pune,Pune,Sweet Potato,25.0,25.0
+Pune,Pune,Tomato,7.0,10.0
+Pune,Pune,Water Melon,5.0,10.0
+Pune,Pune(Pimpri),Beetroot,10.0,10.0
+Pune,Pune,Bhindi,35.0,35.0
+Pune,Pune,Bitter gourd,30.0,30.0
+Pune,Pune,Bottle gourd,18.0,18.0
+Pune,Pune,Brinjal,10.0,20.0
+Pune,Pune,Cabbage,5.0,7.0
+Pune,Pune,Cauliflower,8.0,12.0
+Pune,Pune,Coriander,0.07,0.1
+Pune,Pune,Cucumbar,10.0,20.0
+Pune,Pune,Onion,8.0,18.0
+Pune,Pune,Onion Green,0.07,0.09
+Pune,Pune,Potato,12.0,12.0
+Pune,Pune,Spinach,0.06,0.09
+Pune,Pune,Tomato,7.0,13.0
+Sangli,Sangli,Bajra,28.0,33.0
+Sangli,Sangli,Chili Red,120.0,155.0
+Sangli,Sangli,Dry Grapes,90.0,371.0
+Sangli,Sangli,Green Gram,87.0,95.0
+Sangli,Sangli,Green Peas,150.0,170.0
+Sangli,Sangli,Gur,33.5,39.0
+Sangli,Sangli,Jowar,33.71,35.0
+Sangli,Sangli,nan,34.21,42.0
+Sangli,Sangli,Lentil,70.0,77.0
+Sangli,Sangli,Maize,23.5,24.5
+Sangli,Sangli,Rice,45.0,90.0
+Sangli,Sangli,Wheat,35.0,45.0
+Sangli,"Sangli(Phale, Bhajipura Market)",Apple,50.0,140.0
+Sangli,Sangli,Chikoos,15.0,35.0
+Sangli,Sangli,Garlic,50.0,90.0
+Sangli,Sangli,Ginger,15.0,35.0
+Sangli,Sangli,Grapes,20.0,60.0
+Sangli,Sangli,Guava,15.0,30.0
+Sangli,Sangli,Mango,70.0,270.0
+Sangli,Sangli,Onion,5.0,19.0
+Sangli,Sangli,Orange,50.0,100.0
+Sangli,Sangli,Pomegranate,60.0,160.0
+Sangli,Sangli,Potato,11.0,21.0
+Sangli,Sangli,Water Melon,5.0,12.0
+Sholapur,Akluj,Beans,35.0,40.0
+Sholapur,Sholapur,Beetroot,5.0,8.0
+Sholapur,Sholapur,Bhindi,30.0,40.0
+Sholapur,Sholapur,Bitter gourd,25.0,41.0
+Sholapur,Sholapur,Brinjal,10.0,22.0
+Sholapur,Sholapur,Cabbage,7.0,10.0
+Sholapur,Sholapur,Carrot,20.0,30.0
+Sholapur,Sholapur,Cauliflower,5.0,12.0
+Sholapur,Sholapur,Chikoos,10.0,30.0
+Sholapur,Sholapur,Chilly Capsicum,15.0,23.0
+Sholapur,Sholapur,Coriander,0.05,0.1
+Sholapur,Sholapur,Cucumbar,10.0,18.0
+Sholapur,Sholapur,Drumstick,10.0,25.0
+Sholapur,Sholapur,Ginger,30.0,40.0
+Sholapur,Sholapur,Green Chilli,25.0,40.0
+Sholapur,Sholapur,Guar,30.0,80.0
+Sholapur,Sholapur,Lime,0.02,0.04
+Sholapur,Sholapur,Maize,23.0,23.0
+Sholapur,Sholapur,Methi,0.05,0.08
+Sholapur,Sholapur,Potato,16.0,20.0
+Sholapur,Sholapur,Ridgeguard,25.0,38.0
+Sholapur,Sholapur,Spinach,0.03,0.05
+Sholapur,Sholapur,Tomato,7.0,13.0
+Sholapur,Sholapur,Water Melon,4.0,9.5
+Sholapur,Sholapur,Wheat,27.0,27.0
+Sholapur,Dudhani,Arhar,60.0,73.9
+Sholapur,Sholapur,Bengal Gram,51.0,54.0
+Sholapur,Sholapur,nan,54.5,55.8
+Sholapur,Mangal Wedha,Bhindi,15.0,24.0
+Sholapur,Sholapur,Bitter gourd,11.0,18.0
+Sholapur,Sholapur,Brinjal,2.0,21.0
+Sholapur,Sholapur,Coriander,0.02,0.08
+Sholapur,Sholapur,Cucumbar,3.0,20.0
+Sholapur,Sholapur,Green Chilli,25.0,45.0
+Sholapur,Sholapur,Onion,4.0,15.0
+Sholapur,Sholapur,Ridgeguard,10.0,32.0
+Sholapur,Sholapur,Tomato,2.0,8.0
+Sholapur,Sangola,Pomegranate,55.0,181.0
+Sholapur,Solapur,Apple,70.0,110.0
+Sholapur,Sholapur,Arhar,62.25,70.0
+Sholapur,Sholapur,Beans,25.0,40.0
+Sholapur,Sholapur,Bhindi,5.0,40.0
+Sholapur,Sholapur,Bitter gourd,10.0,20.0
+Sholapur,Sholapur,Brinjal,4.0,25.0
+Sholapur,Sholapur,Cabbage,3.0,5.0
+Sholapur,Sholapur,Carrot,5.0,15.0
+Sholapur,Sholapur,Cauliflower,4.0,11.2
+Sholapur,Sholapur,Chikoos,10.0,35.0
+Sholapur,Sholapur,Chilly Capsicum,8.0,15.0
+Sholapur,Sholapur,Coriander,3.0,7.0
+Sholapur,Sholapur,Cucumbar,5.0,16.0
+Sholapur,Sholapur,Grapes,0.8,1.6
+Sholapur,Sholapur,Green Chilli,23.0,30.0
+Sholapur,Sholapur,Guar,20.0,50.0
+Sholapur,Sholapur,Guava,5.0,13.0
+Sholapur,Sholapur,Gur,36.0,41.6
+Sholapur,Sholapur,Jowar,24.0,30.45
+Sholapur,Sholapur,Karbuja,5.0,15.0
+Sholapur,Sholapur,Lime,10.0,114.0
+Sholapur,Sholapur,Mango,28.0,40.0
+Sholapur,Sholapur,nan,16.0,24.0
+Sholapur,Sholapur,Methi,2.5,6.0
+Sholapur,Sholapur,Onion,2.0,19.0
+Sholapur,Sholapur,Onion Green,5.0,6.0
+Sholapur,Sholapur,Pomegranate,11.0,150.0
+Sholapur,Sholapur,Potato,13.0,18.0
+Sholapur,Sholapur,Rajgir,4.0,5.0
+Sholapur,Sholapur,Rice,34.35,68.25
+Sholapur,Sholapur,Ridgeguard,10.0,25.0
+Sholapur,Sholapur,Soyabean,40.6,41.2
+Sholapur,Sholapur,Spinach,2.0,4.0
+Sholapur,Sholapur,Tomato,2.0,8.0
+Sholapur,Sholapur,Water Melon,3.0,12.0
+Sholapur,Sholapur,Wheat,25.2,40.15
+Thane,Kalyan,Beans,30.0,40.0
+Thane,Thane,Bhindi,24.0,28.0
+Thane,Thane,Bitter gourd,26.0,30.0
+Thane,Thane,Bottle gourd,8.0,12.0
+Thane,Thane,Brinjal,10.0,15.0
+Thane,Thane,Cabbage,4.0,6.0
+Thane,Thane,Carrot,10.0,15.0
+Thane,Thane,Cauliflower,6.0,12.0
+Thane,Thane,Chilly Capsicum,22.0,28.0
+Thane,Thane,Coriander,0.1,0.2
+Thane,Thane,Corriander seed,100.0,120.0
+Thane,Thane,Cucumbar,12.0,18.0
+Thane,Thane,Drumstick,20.0,32.0
+Thane,Thane,Elephant Yam,50.0,60.0
+Thane,Thane,French Beans,30.0,40.0
+Thane,Thane,Garlic,60.0,80.0
+Thane,Thane,Ginger,25.0,30.0
+Thane,Thane,Green Chilli,40.0,50.0
+Thane,Thane,Green Peas,90.0,120.0
+Thane,Thane,Ground Nut Seed,130.0,140.0
+Thane,Thane,Guar,45.0,55.0
+Thane,Thane,Lime,90.0,100.0
+Thane,Thane,Little gourd,30.0,40.0
+Thane,Thane,Mataki,71.0,84.0
+Thane,Thane,Methi,0.1,0.15
+Thane,Thane,Onion,14.0,20.0
+Thane,Thane,Onion Green,0.1,0.15
+Thane,Thane,Peas Wet,40.0,50.0
+Thane,Thane,Potato,15.0,16.0
+Thane,Thane,Raddish,0.25,0.35
+Thane,Thane,Ridgeguard,28.0,32.0
+Thane,Thane,Spinach,0.08,0.1
+Thane,Thane,Sweet Pumpkin,8.0,12.0
+Thane,Thane,Tomato,6.0,12.0
+Thane,Thane,Wheat,30.0,34.0
+Thane,Palghar,Rice,43.05,43.05
+Thane,Thane,Wheat,30.25,30.25
+Thane,Ulhasnagar,Bajra,28.0,30.0
+Thane,Thane,Jowar,34.0,38.0
+Thane,Thane,Rice,45.0,65.0
+Thane,Thane,Wheat,30.0,34.0
+Thane,Vasai,Rice,35.6,49.6
+Wardha,Arvi,Arhar,65.0,72.5
+Wardha,Wardha,Bengal Gram,45.0,53.3
+Wardha,Wardha,Soyabean,30.0,41.5
+Wardha,Hinganghat,Arhar,60.0,75.45
+Wardha,Wardha,nan,75.5,76.5
+Wardha,Wardha,Bengal Gram,50.0,54.35
+Wardha,Wardha,nan,54.4,55.9
+Wardha,Wardha,Cotton,67.0,71.2
+Wardha,Wardha,nan,71.25,75.75
+Wardha,Wardha,Soyabean,27.0,42.0
+Wardha,Wardha,Wheat,23.0,26.0
+Wardha,Pulgaon,Arhar,70.25,74.25
+Wardha,Wardha,Soyabean,36.05,38.6
+Wardha,Samudrapur,Cotton,65.0,74.0
+Wardha,Sindi,Arhar,66.4,71.8
+Wardha,Wardha,Bengal Gram,50.1,54.35
+Wardha,Wardha,Soyabean,33.1,38.0
+Wardha,Wardha,Wheat,24.1,26.5
+Wardha,Sindi(Selu),Cotton,71.25,74.75
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Bhindi,20.0,25.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Bitter gourd,23.0,35.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Bottle gourd,10.0,15.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Brinjal,6.0,9.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Cabbage,4.0,5.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Carrot,6.0,8.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Cauliflower,6.0,12.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Chikoos,33.0,56.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Chilly Capsicum,10.0,20.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Coriander,6.0,7.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Cucumbar,5.0,8.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Drumstick,12.0,15.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Garlic,40.0,80.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Ginger,20.0,25.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Grapes,65.0,120.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Green Chilli,25.0,45.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Guar,30.0,45.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Karbuja,8.0,16.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Lime,60.0,70.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Mango,50.0,150.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Methi,3.0,5.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Onion,8.0,16.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Orange,55.0,75.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Peas Wet,10.0,13.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Pomegranate,35.0,85.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Potato,10.0,18.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Ridgeguard,20.0,30.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Spinach,4.0,5.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Tamarind Fruit,65.0,100.0
+Chattrapati Sambhajinagar,Chattrapati Sambhajinagar,Tomato,6.0,8.0
+Beed,Ambejaogai,Arhar,67.0,67.0
+Beed,Beed,Bengal Gram,52.5,53.69
+Beed,Beed,Soyabean,39.0,41.48
+Beed,Beed,Bajra,26.4,30.51
+Beed,Beed,Bengal Gram,50.71,52.6
+Beed,Beed,Jowar,17.0,33.16
+Beed,Beed,Maize,21.93,21.93
+Beed,Beed,Soyabean,39.5,40.0
+Beed,Beed,Wheat,26.5,31.91
+Beed,Gevrai,Arhar,66.36,71.0
+Beed,Beed,Bajra,23.0,23.0
+Beed,Beed,nan,26.25,27.18
+Beed,Beed,Bengal Gram,51.0,53.86
+Beed,Beed,Jowar,22.96,30.84
+Beed,Beed,Sesamum,100.01,100.01
+Beed,Beed,Soyabean,38.71,39.91
+Beed,Beed,Wheat,24.5,27.0
+Beed,Majalgaon,Arhar,68.0,72.4
+Beed,Beed,Bajra,21.0,26.2
+Beed,Beed,Bengal Gram,50.0,54.3
+Beed,Beed,Jowar,20.0,25.0
+Beed,Beed,Soyabean,34.76,40.75
+Beed,Beed,Wheat,20.5,22.7
+Beed,Vadvani,Cotton,71.9,74.5
+Bhandara,Bhandara,Arhar,65.0,71.0
+Bhandara,Bhandara,Bengal Gram,50.0,52.0
+Bhandara,Bhandara,Mustard,48.0,48.0
+Bhandara,Bhandara,Rice,41.0,45.0
+Bhandara,Bhandara,Wheat,24.0,24.0
+Chandrapur,Bhadrawati,Arhar,65.0,65.0
+Chandrapur,Chandrapur,Bengal Gram,53.0,53.0
+Chandrapur,Chandrapur,Cotton,62.0,73.5
+Chandrapur,Brahmpuri,Paddy,24.0,26.0
+Chandrapur,Chandrapur,Chili Red,70.0,150.0
+Chandrapur,Chandrapur(Ganjwad),Bitter gourd,20.0,30.0
+Chandrapur,Chandrapur,Brinjal,5.0,10.0
+Chandrapur,Chandrapur,Cabbage,3.0,6.0
+Chandrapur,Chandrapur,Carrot,10.0,20.0
+Chandrapur,Chandrapur,Cauliflower,4.0,10.0
+Chandrapur,Chandrapur,Coriander,20.0,30.0
+Chandrapur,Chandrapur,Cucumbar,10.0,15.0
+Chandrapur,Chandrapur,Ginger,34.0,36.0
+Chandrapur,Chandrapur,Lime,75.0,100.0
+Chandrapur,Chandrapur,Methi,10.0,20.0
+Chandrapur,Chandrapur,Onion,12.0,18.0
+Chandrapur,Chandrapur,Potato,15.0,18.0
+Chandrapur,Chandrapur,Tomato,3.0,5.0
+Chandrapur,Chimur,Paddy,26.0,27.0
+Chandrapur,Mul,Paddy,27.0,28.95
+Chandrapur,Pombhurni,Paddy,26.5,28.0
+Chandrapur,Savali,Paddy,26.5,28.1
+Chandrapur,Varora,Arhar,64.5,68.0
+Chandrapur,Chandrapur,Bengal Gram,52.75,53.5
+Chandrapur,Chandrapur,Cotton,55.0,71.2
+Chandrapur,Chandrapur,nan,71.21,74.01
+Chandrapur,Chandrapur,Soyabean,30.0,37.5
+Gadchiroli,Armori,Paddy,24.1,28.3
+Gadchiroli,Armori(Desaiganj),Paddy,21.0,22.5
+Gadchiroli,Gandchiroli,Paddy,24.0,27.5
+Nanded,Bhokar,Arhar,69.85,70.3
+Nanded,Nanded,Bengal Gram,52.0,54.01
+Nanded,Nanded,Maize,21.0,21.0
+Nanded,Nanded,Soyabean,39.61,39.61
+Nanded,Kinwat,Arhar,67.0,69.0
+Nanded,Nanded,Bengal Gram,48.0,52.0
+Nanded,Mukhed,Arhar,72.0,73.0
+Nanded,Nanded,Bengal Gram,54.5,55.0
+Nanded,Nanded,Soyabean,40.0,41.75
+Dharashiv(Usmanabad),Dharashiv,Bhindi,11.0,30.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Carrot,10.0,23.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Chikoos,10.0,20.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Coriander,2.0,8.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Ginger,23.0,35.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Grapes,15.0,70.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Green Chilli,20.0,45.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Karbuja,10.0,15.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Lime,7.0,12.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Methi,5.0,6.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Onion,10.0,17.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Potato,6.0,20.0
+Dharashiv(Usmanabad),Murum,Arhar,71.0,74.5
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Bengal Gram,51.61,51.61
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Black Gram,50.0,50.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Jowar,19.5,19.5
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Mustard,60.01,60.01
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Soyabean,38.1,40.38
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Wheat,25.0,26.0
+Dharashiv(Usmanabad),Paranda,Bengal Gram,51.0,51.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Jowar,21.0,31.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Maize,21.5,21.5
+Dharashiv(Usmanabad),Tuljapur,Bengal Gram,50.0,53.5
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Jowar,20.0,34.5
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Soyabean,40.0,40.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Wheat,23.0,27.5
+Dharashiv(Usmanabad),Umarga,Arhar,73.0,73.0
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Bengal Gram,50.01,52.01
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Corriander seed,35.01,35.01
+Dharashiv(Usmanabad),Dharashiv(Usmanabad),Sunflower,45.0,45.0
+Parbhani,Gangakhed,Arhar,70.0,71.0
+Parbhani,Parbhani,Soyabean,40.0,41.0
+Parbhani,Parbhani,Wheat,25.0,30.0
+Parbhani,Pathari,Bengal Gram,51.0,52.0
+Parbhani,Parbhani,Jowar,16.5,24.11
+Parbhani,Parbhani,Soyabean,37.01,39.0
+Parbhani,Parbhani,Wheat,24.26,28.0
+Parbhani,Tadkalas,Arhar,67.0,70.0
+Parbhani,Parbhani,Bengal Gram,52.0,53.0
+Parbhani,Parbhani,Jowar,21.0,23.0
+Parbhani,Parbhani,Soyabean,39.5,40.25
+Parbhani,Parbhani,Wheat,24.0,27.5
+Raigad,Alibagh,Rice,25.0,27.0
+Raigad,Karjat(Raigad),Paddy,23.0,24.0
+Raigad,Raigad,Rice,42.0,58.0
+Raigad,Mangaon,Rice,19.0,48.0
+Raigad,Murud,Rice,25.0,27.0
+Raigad,Panvel,Beans,45.0,50.0
+Raigad,Raigad,Bitter gourd,35.0,40.0
+Raigad,Raigad,Bottle gourd,35.0,40.0
+Raigad,Raigad,Cabbage,15.0,20.0
+Raigad,Raigad,Carrot,30.0,40.0
+Raigad,Raigad,Cauliflower,20.0,25.0
+Raigad,Raigad,Cucumbar,30.0,35.0
+Raigad,Raigad,Guar,70.0,80.0
+Raigad,Raigad,Little gourd,55.0,60.0
+Raigad,Raigad,Ridgeguard,35.0,40.0
+Raigad,Raigad,Snakeguard,25.0,30.0
+Raigad,Raigad,Tomato,15.0,20.0
+Ratnagiri,Ratnagiri (Nachane),Beans,20.0,35.0
+Ratnagiri,Ratnagiri,Bhindi,30.0,50.0
+Ratnagiri,Ratnagiri,Bitter gourd,20.0,30.0
+Ratnagiri,Ratnagiri,Brinjal,10.0,20.0
+Ratnagiri,Ratnagiri,Cabbage,2.0,6.0
+Ratnagiri,Ratnagiri,Chilly Capsicum,30.0,45.0
+Ratnagiri,Ratnagiri,Green Chilli,50.0,80.0
+Ratnagiri,Ratnagiri,Guar,40.0,60.0
+Ratnagiri,Ratnagiri,Tomato,5.0,10.0
+Satara,Karad,Beans,30.0,40.0
+Satara,Satara,Bhindi,20.0,30.0
+Satara,Satara,Bitter gourd,15.0,20.0
+Satara,Satara,Bottle gourd,5.0,10.0
+Satara,Satara,Brinjal,5.0,10.0
+Satara,Satara,Cabbage,30.0,50.0
+Satara,Satara,Cauliflower,5.0,10.0
+Satara,Satara,Chilly Capsicum,20.0,25.0
+Satara,Satara,Drumstick,10.0,20.0
+Satara,Satara,Ginger,15.0,25.0
+Satara,Satara,Green Chilli,30.0,60.0
+Satara,Satara,Guar,30.0,40.0
+Satara,Satara,Onion,10.0,18.0
+Satara,Satara,Peas Wet,50.0,60.0
+Satara,Satara,Ridgeguard,10.0,15.0
+Satara,Satara,Snakeguard,8.0,10.0
+Satara,Satara,Tomato,5.0,10.0
+Satara,Vaduj,Bengal Gram,54.5,55.5
+Satara,Satara,Jowar,34.25,35.0
+Satara,Satara,Maize,23.5,24.5
+Satara,Satara,Wheat,26.0,28.0
+Satara,Vai,Bottle gourd,15.0,20.0
+Satara,Satara,Cabbage,5.0,7.0
+Satara,Satara,Cauliflower,8.0,12.0
+Satara,Satara,Green Chilli,60.0,70.0
+Satara,Satara,Guar,60.0,70.0
+Satara,Satara,Potato,15.0,23.0
+Satara,Satara,Tomato,8.0,15.0
+Yavatmal,Jagdamba Agrocare,Cotton,65.0,74.0
+Yavatmal,Kalamb,Arhar,69.5,70.1
+Yavatmal,Yavatmal,Bengal Gram,53.0,53.6
+Yavatmal,Yavatmal,Soyabean,32.75,37.5
+Vashim,Karanja,Wheat,25.1,26.1
+Vashim,Krushna Krishi Bazar,Arhar,67.0,73.0
+Vashim,Vashim,Bengal Gram,51.0,53.0
+Vashim,Vashim,Soyabean,37.5,41.0
+Vashim,Risod,Arhar,68.5,72.5
+Vashim,Vashim,Bengal Gram,54.4,55.95
+Vashim,Vashim,Soyabean,37.1,40.9
+Gondiya,Amgaon,Paddy,20.5,20.7
+Gondiya,Goregaon,Paddy,23.0,23.0
+Gondiya,Tiroda,Paddy,20.05,20.69
+Hingoli,Basmat(Kurunda),Turmeric,109.0,138.0
+Hingoli,Hingoli,Arhar,69.0,74.0
+Hingoli,Hingoli,Bengal Gram,49.0,54.25
+Hingoli,Hingoli,nan,55.0,56.1
+Hingoli,Hingoli,Turmeric,115.0,141.0
+Hingoli,Sengoan,Arhar,66.0,70.0
+Hingoli,Hingoli,Bengal Gram,49.0,53.0
+Hingoli,Hingoli,Soyabean,36.0,40.0
+Hingoli,Hingoli,Turmeric,105.0,126.55
