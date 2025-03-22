@@ -52,7 +52,7 @@ class CropRecommendationModel:
 
     def get_soil_data(self, district, block=None):
         """Fetch soil quality data for the given district/block."""
-        district_file = os.path.join(self.dataset_dir, "maharashtra.csv")
+        district_file = os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv")
         
         if not os.path.exists(district_file):
             raise FileNotFoundError("Maharashtra data file not found.")
@@ -60,7 +60,7 @@ class CropRecommendationModel:
         df = pd.read_csv(district_file)
         
         if block:
-            block_file = os.path.join(self.dataset_dir, f"{district.lower()}.csv")
+            block_file = os.path.join(f"{self.dataset_dir}/region_soil/", f"{district.lower()}.csv")
             if os.path.exists(block_file):
                 df = pd.read_csv(block_file)
                 df = df[df["Block"] == block]
@@ -112,20 +112,21 @@ class CropRecommendationModel:
         return [(crop, round(conf, 2)) for crop, conf in zip(top_3_crops, top_3_confidences)]
     
     def get_available_districts(self):
-        df = pd.read_csv(os.path.join(self.dataset_dir, "maharashtra.csv"))
+        df = pd.read_csv(os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv"))
         return df["District"].unique().tolist()
 
     def get_blocks_in_district(self, district):
-        df = pd.read_csv(os.path.join(self.dataset_dir, "maharashtra.csv"))
+        df = pd.read_csv(os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv"))
         return df[df["District"] == district]["Block"].unique().tolist()
 
     def get_all_blocks(self):
-        df = pd.read_csv(os.path.join(self.dataset_dir, "maharashtra.csv"))
+        df = pd.read_csv(os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv"))
         return df["Block"].unique().tolist()
 
     def get_crop_names(self):
-        crop_path = os.path.join(self.dataset_dir, "Crop_detection")
-        return [name for name in os.listdir(crop_path) if os.path.isdir(os.path.join(crop_path, name))]
+        #crop_path = os.path.join(f"{self.dataset_dir}/region_soil/", "Crop_detection")
+        #return [name for name in os.listdir(crop_path) if os.path.isdir(os.path.join(crop_path, name))]
+        return ['almond', 'banana', 'cardamom', 'Cherry', 'chilli', 'clove', 'coconut', 'Coffee-plant', 'cotton', 'Cucumber', 'Fox_nut(Makhana)', 'gram', 'jowar', 'jute', 'Lemon', 'maize', 'mustard-oil', 'Olive-tree', 'papaya', 'Pearl_millet(bajra)', 'pineapple', 'rice', 'soyabean', 'sugarcane', 'sunflower', 'tea', 'Tobacco-plant', 'tomato', 'vigna-radiati(Mung)', 'wheat']
 
 # Example Usage
 if __name__ == "__main__":
