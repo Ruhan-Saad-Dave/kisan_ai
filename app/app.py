@@ -40,12 +40,14 @@ class SoilData(BaseModel):
     ph: float
     rainfall: float
 
-class CropResponse(BaseModel):
-    recommended_crop: str
-
-class CropDetectionResponse(BaseModel):
-    detected_crop: str
+# Define response models
+class CropPrediction(BaseModel):
+    crop: str
     confidence: float
+
+class CropResponse(BaseModel):
+    recommended_crops: List[CropPrediction]
+    message: Optional[str] = None
 
 @app.get("/", tags=["Root"])
 async def root():
@@ -57,50 +59,55 @@ async def root():
     }
 
 @app.post("/predict/", response_model=CropResponse, tags=["Prediction"])
-async def predict_crop(soil_data: SoilData):
+async def predict_crop(district: str, block: Optional[str] = None):
     """
-    Predict the most suitable crop based on soil and climate conditions.
+    Predict the top 3 suitable crops based on district and optional block location.
     
     Parameters:
-    - N: Nitrogen content in soil (mg/kg)
-    - P: Phosphorus content in soil (mg/kg)
-    - K: Potassium content in soil (mg/kg)
-    - temperature: Temperature in Celsius
-    - humidity: Relative humidity in %
-    - ph: pH value of the soil
-    - rainfall: Rainfall in mm
+    - district: District name (e.g., "Nagpur")
+    - block: Optional block name within the district
+    
+    Returns:
+    - List of top 3 recommended crops with confidence scores
     """
     try:
-        # If model not loaded, train it
+        # If model not loaded, try to load it
         if not model.trained:
-            if os.path.exists("dataset/Crop_recommendation.csv"):
-                model.train("dataset/Crop_recommendation.csv")
-                model.save_model(
+            try:
+                model.load_model(
                     model_path="model/crop_model.pkl",
                     scaler_path="model/scaler.pkl",
                     encoder_path="model/label_encoder.pkl"
                 )
-            else:
-                raise HTTPException(
-                    status_code=500, 
-                    detail="Model not trained and dataset not found"
-                )
+            except FileNotFoundError:
+                # If models don't exist, train the model
+                if os.path.exists("dataset/Crop_recommendation.csv"):
+                    model.train("dataset/Crop_recommendation.csv")
+                    model.save_model(
+                        model_path="model/crop_model.pkl",
+                        scaler_path="model/scaler.pkl",
+                        encoder_path="model/label_encoder.pkl"
+                    )
+                else:
+                    raise HTTPException(
+                        status_code=500, 
+                        detail="Model not trained and dataset not found"
+                    )
         
-        # Convert input data to list
-        input_data = [
-            soil_data.N,
-            soil_data.P,
-            soil_data.K,
-            soil_data.temperature,
-            soil_data.humidity,
-            soil_data.ph,
-            soil_data.rainfall
+        # Get prediction using district and block parameters
+        results = model.predict(district=district, block=block)
+        
+        # Handle error messages returned as strings
+        if isinstance(results, str):
+            return {"recommended_crops": [], "message": results}
+        
+        # Format the response
+        recommendations = [
+            CropPrediction(crop=crop, confidence=confidence)
+            for crop, confidence in results
         ]
         
-        # Get prediction
-        recommended_crop = model.predict(input_data)
-        #[(crop, round(conf, 2)) for crop, conf in zip(top_3_crops, top_3_confidences)]
-        return {"recommended_crop": [crop for crop, _ in recommended_crop]}
+        return {"recommended_crops": recommendations}
     
     except Exception as e:
         raise HTTPException(
