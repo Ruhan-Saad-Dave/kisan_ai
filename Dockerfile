@@ -10,7 +10,12 @@ RUN apt-get update && \
     build-essential \
     wget \
     unzip \
+    python3-venv \
     && rm -rf /var/lib/apt/lists/*
+
+# Create and activate virtual environment
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
 # Copy requirements file
 COPY requirements.txt .
@@ -21,7 +26,7 @@ RUN echo "pandas>=1.3.0" >> requirements.txt && \
     echo "joblib>=1.0.0" >> requirements.txt && \
     echo "numpy>=1.20.0" >> requirements.txt
 
-# Install Python dependencies
+# Install Python dependencies in the virtual environment
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
@@ -30,6 +35,9 @@ COPY . .
 
 # Create necessary directories if they don't exist
 RUN mkdir -p model dataset
+
+# Download the dataset
+RUN wget -O /app/dataset/Crop_recommendation.csv https://raw.githubusercontent.com/Gladiator07/Crop-Recommendation-System/master/Crop_recommendation.csv || echo "Dataset download failed, will attempt to download at runtime"
 
 # Set environment variables
 ENV PORT=7860
@@ -40,5 +48,5 @@ ENV PYTHONPATH=/app
 # Expose the port
 EXPOSE 7860
 
-# Command to run the application
-CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
+# Command to run the application using the virtual environment
+CMD ["/opt/venv/bin/uvicorn", "app:app", "--host", "0.0.0.0", "--port", "7860"]
