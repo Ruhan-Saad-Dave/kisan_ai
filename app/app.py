@@ -122,7 +122,7 @@ async def detect_crop(file: UploadFile = File(...)):
     """
     try:
         # Create temp directory if it doesn't exist
-        temp_dir = "temp_uploads"
+        temp_dir = "/tmp/uploads"  # Changed to use /tmp which is usually writable
         os.makedirs(temp_dir, exist_ok=True)
         
         # Generate a unique filename
