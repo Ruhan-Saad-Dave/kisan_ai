@@ -1,6 +1,9 @@
 # crop recommendation
 N, P, K, temperature, humidity, ph, rainfall
 https://www.kaggle.com/api/v1/datasets/download/atharvaingle/crop-recommendation-dataset
+location to weather
+https://city.imd.gov.in/api/cityweather.php?id=42182 (change 42182 to city id)
+
 
 # crop image classification
 https://www.kaggle.com/api/v1/datasets/download/mdwaquarazam/agricultural-crops-image-classification
