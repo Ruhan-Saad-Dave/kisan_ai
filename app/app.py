@@ -22,7 +22,7 @@ model = CropRecommendationModel()
 crop_classifier = CropClassifier()
 
 # Initialize the crop price finder
-price_finder = CropPriceFinder("path/to/cleaned_crop_prices.csv")
+price_finder = CropPriceFinder("dataset/cleaned_crop_prices.csv")
 
 # Load the pre-trained model
 try:

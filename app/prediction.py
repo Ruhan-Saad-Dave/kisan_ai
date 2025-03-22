@@ -46,6 +46,6 @@ class CropPriceFinder:
 
 # Example Usage
 if __name__ == "__main__":
-    crop_finder = CropPriceFinder("cleaned_crop_prices.csv")
+    crop_finder = CropPriceFinder("dataset/cleaned_crop_prices.csv")
     result = crop_finder.get_crop_price("Brinjal", district="Ahmednagar")
     print(result)
