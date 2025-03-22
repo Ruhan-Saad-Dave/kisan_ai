@@ -7,7 +7,7 @@ import numpy as np
 import os
 
 class CropClassifier:
-    def __init__(self, dataset_path="dataset/Crop_detection", model_path="dataset/crop_classification_model.keras"):
+    def __init__(self, dataset_path="dataset/Crop_detection", model_path="model/crop_classification_model.keras"):
         self.dataset_path = dataset_path
         self.model_path = model_path
         self.img_size = (224, 224)
