@@ -5,7 +5,7 @@ from app.recommendation import CropRecommendationModel
 from app.detection import CropClassifier
 import os
 import shutil
-from typing import Optional
+from typing import Optional, List 
 import uuid
 
 app = FastAPI(
