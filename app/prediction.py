@@ -40,8 +40,8 @@ class CropPriceFinder:
             "crop": crop_name,
             "district": district if district else "Multiple",
             "market": market if market else "Multiple",
-            "min_price": round(min_price, 2),
-            "max_price": round(max_price, 2)
+            "min_price": round(min_price, 2) * 5,
+            "max_price": round(max_price, 2) * 5
         }
 
 # Example Usage
