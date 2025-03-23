@@ -295,7 +295,7 @@ class CropClassifier:
         Returns:
             dict: JSON-compatible dictionary with crop name and confidence
         """
-        self.load_model(model_path = "model/crop_classifier.keras")
+        self.load_model(model_path = "model/crop_classifier.keras", class_indices_path= " model/class_indices.json")
         if self.model is None:
             raise ValueError("Model not loaded. Call load_model() first.")
         
