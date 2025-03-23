@@ -79,7 +79,7 @@ class CropRecommendationModel:
             raise ValueError(f"No matching data found for District: {district}, Block: {block if block else 'N/A'}")
 
         # Select relevant soil columns and return mean values as a list
-        soil_columns = ["N_low", "N_mid", "N_high", "P_low", "P_mid", "P_high", "K_low", "K_mid", "K_high", "pH_low", "pH_mid", "pH_high"]
+        soil_columns = ["Nitrogen - Medium", "Phosphorous - Medium",  "Potassium - Medium",  "pH - Acidic"]
         return df[soil_columns].mean().tolist()
     
     def get_weather_data(self, district):
