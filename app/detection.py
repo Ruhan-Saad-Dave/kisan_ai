@@ -6,7 +6,7 @@ from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCh
 import matplotlib.pyplot as plt
 import numpy as np
 import os
-from PIL import Image
+from PIL import Image, UnidentifiedImageError
 import json
 
 class CropClassifier:
@@ -22,6 +22,7 @@ class CropClassifier:
         self.epochs = epochs
         self.model = None
         self.class_indices = None
+        self.supported_formats = ['.jpg', '.jpeg', '.png']
     
     def configure_gpu(self):
         """Configure GPU if available."""
@@ -280,37 +281,69 @@ class CropClassifier:
         
         return self
     
+    def validate_image_format(self, image_path):
+        """
+        Validate if the image format is supported.
+        
+        Args:
+            image_path: Path to the image file
+            
+        Returns:
+            bool: True if the format is supported, False otherwise
+        """
+        # Check if the file exists
+        if not os.path.exists(image_path):
+            raise FileNotFoundError(f"Image file not found: {image_path}")
+            
+        # Check the file extension
+        _, ext = os.path.splitext(image_path.lower())
+        if ext not in self.supported_formats:
+            print(f"Warning: Unsupported file format {ext}. Supported formats are: {', '.join(self.supported_formats)}")
+            print("Will attempt to open the file anyway using PIL...")
+            return False
+            
+        return True
+    
     def preprocess_image(self, image):
         """
         Preprocess a single image for prediction.
         
         Args:
-            image: Can be a PIL Image, numpy array, or file path
+            image: Can be a PIL Image, numpy array, or file path to a JPG or PNG
         """
-        # Handle different input types
-        if isinstance(image, str):  # It's a file path
-            img = Image.open(image).convert('RGB')
-        elif isinstance(image, np.ndarray):  # It's a numpy array
-            if image.ndim == 2:  # Grayscale
-                img = Image.fromarray(image).convert('RGB')
+        try:
+            # Handle different input types
+            if isinstance(image, str):  # It's a file path
+                # Validate format if it's a file path
+                self.validate_image_format(image)
+                try:
+                    img = Image.open(image).convert('RGB')
+                except UnidentifiedImageError:
+                    raise ValueError(f"Cannot identify image file {image}. Please ensure it is a valid JPG or PNG file.")
+            elif isinstance(image, np.ndarray):  # It's a numpy array
+                if image.ndim == 2:  # Grayscale
+                    img = Image.fromarray(image).convert('RGB')
+                else:
+                    img = Image.fromarray(image)
+            elif hasattr(image, 'convert'):  # It's already a PIL Image
+                img = image.convert('RGB')
             else:
-                img = Image.fromarray(image)
-        elif hasattr(image, 'convert'):  # It's already a PIL Image
-            img = image.convert('RGB')
-        else:
-            raise ValueError("Unsupported image type. Please provide a PIL Image, numpy array, or file path.")
-        
-        # Resize and normalize
-        img = img.resize((self.img_width, self.img_height))
-        img_array = np.array(img) / 255.0  # Normalize
-        return np.expand_dims(img_array, axis=0)  # Add batch dimension
+                raise ValueError("Unsupported image type. Please provide a PIL Image, numpy array, or file path to a JPG or PNG.")
+            
+            # Resize and normalize
+            img = img.resize((self.img_width, self.img_height))
+            img_array = np.array(img) / 255.0  # Normalize
+            return np.expand_dims(img_array, axis=0)  # Add batch dimension
+            
+        except Exception as e:
+            raise ValueError(f"Error preprocessing image: {str(e)}")
 
     def predict(self, image, model_path=None):
         """
         Predict crop class from an image.
         
         Args:
-            image: Can be a PIL Image, numpy array, or file path
+            image: Can be a PIL Image, numpy array, or file path to a JPG or PNG
             model_path: Optional path to the model file if model isn't loaded yet
                 
         Returns:
@@ -323,33 +356,42 @@ class CropClassifier:
             except Exception as e:
                 raise ValueError(f"Failed to load model: {str(e)}")
         
-        # Preprocess the image
-        processed_image = self.preprocess_image(image)
-        
-        # Make prediction
-        predictions = self.model.predict(processed_image)
-        
-        # Get the predicted class index and confidence
-        predicted_class_index = np.argmax(predictions[0])
-        confidence = float(predictions[0][predicted_class_index])
-        
-        # Get the class name
-        if self.inverted_class_indices:
-            crop_name = self.inverted_class_indices[predicted_class_index]
-        else:
-            crop_name = f"Class_{predicted_class_index}"
-        
-        # Return as JSON compatible dictionary
-        return {
-            "crop_name": crop_name,
-            "confidence": confidence
-        }
+        try:
+            # Preprocess the image
+            processed_image = self.preprocess_image(image)
+            
+            # Make prediction
+            predictions = self.model.predict(processed_image)
+            
+            # Get the predicted class index and confidence
+            predicted_class_index = np.argmax(predictions[0])
+            confidence = float(predictions[0][predicted_class_index])
+            
+            # Get the class name
+            if self.inverted_class_indices:
+                crop_name = self.inverted_class_indices[predicted_class_index]
+            else:
+                crop_name = f"Class_{predicted_class_index}"
+            
+            # Return as JSON compatible dictionary
+            return {
+                "crop_name": crop_name,
+                "confidence": confidence
+            }
+        except Exception as e:
+            # Return error information in a structured format
+            return {
+                "error": True,
+                "message": str(e),
+                "crop_name": None,
+                "confidence": 0.0
+            }
     
     def get_names(self):
         return ["apple", "banana", "beetroot", "bell pepper", "cabbage", "capsicum", "carrot", "cauliflower", "chilli pepper", "corn", "cucumber", "eggplant", "garlic", "ginger", "grapes", "jalepeno", "kiwi", "lemon", "lettuce", "mango", "onion", "orange", "paprika", "pear", "peas", "pineapple", "pomegranate", "potato", "raddish", "soy beans", "spinach", "sweetcorn", "sweetpotato", "tomato", "turnip", "watermelon"]
 
 
-# Example usage (can be imported elsewhere)
+# Example usage
 if __name__ == "__main__":
     # Example training
     classifier = CropClassifier(epochs=20)
@@ -360,8 +402,12 @@ if __name__ == "__main__":
         model_save_path='crop_classifier.keras'
     )
     
-    # Example prediction
+    # Example prediction for JPG image
     # result = classifier.predict("path/to/test_image.jpg")
+    # print(json.dumps(result, indent=4))
+    
+    # Example prediction for PNG image
+    # result = classifier.predict("path/to/test_image.png")
     # print(json.dumps(result, indent=4))
     
     # Or to load a pre-trained model
