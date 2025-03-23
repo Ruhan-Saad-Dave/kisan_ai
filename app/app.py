@@ -5,6 +5,8 @@ from app.recommendation import CropRecommendationModel
 from app.detection import CropClassifier
 import os
 import shutil
+import tempfile
+from pathlib import Path
 from typing import Optional, List 
 import uuid
 from app.prediction import CropPriceFinder
