@@ -205,7 +205,7 @@ async def get_all_blocks():
 async def get_crop_names():
     """Returns a list of crop names available in the dataset for detection."""
     try:
-        crops = crop_classifier.get_crop_names()
+        crops = crop_classifier.get_names()
         return {"crops": crops}
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
