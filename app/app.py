@@ -149,22 +149,38 @@ async def detect_crop(file: UploadFile = File(...)):
     - confidence: Confidence level of the prediction (0-100%)
     """
     try:
-        # Read the image file directly
-        image_data = await file.read()
+        # Create a temporary file
+        temp_file = f"temp_{uuid.uuid4()}.jpg"
         
-        # Make prediction
-        result = crop_classifier.predict(image_data)
-        
-        if result is None:
-            raise HTTPException(
-                status_code=500,
-                detail="Failed to make prediction. Model may not be trained."
-            )
-        
-        return {
-            "detected_crop": result["crop_name"],
-            "confidence": result["confidence"]
-        }
+        try:
+            # Save the uploaded file to a temporary location
+            with open(temp_file, "wb") as buffer:
+                shutil.copyfileobj(file.file, buffer)
+            
+            # Make prediction using the file path
+            result = crop_classifier.predict(temp_file)
+            
+            if result is None:
+                raise HTTPException(
+                    status_code=500,
+                    detail="Failed to make prediction. Model may not be trained."
+                )
+            
+            # Check if there was an error in the prediction
+            if "error" in result and result["error"]:
+                raise HTTPException(
+                    status_code=500,
+                    detail=f"Error in prediction: {result['message']}"
+                )
+            
+            return {
+                "detected_crop": result["crop_name"],
+                "confidence": result["confidence"]
+            }
+        finally:
+            # Clean up the temporary file
+            if os.path.exists(temp_file):
+                os.remove(temp_file)
     
     except Exception as e:
         raise HTTPException(
