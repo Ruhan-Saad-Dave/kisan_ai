@@ -243,21 +243,40 @@ class CropClassifier:
     
     def load_model(self, model_path, class_indices_path=None):
         """Load a pre-trained model and class indices."""
-
-        #self.model = load_model(model_path)
-        
-        # Load class indices
-        #if class_indices_path:
-         #   with open(class_indices_path, 'r') as f:
-          #      self.class_indices = json.load(f)
-        #elif os.path.exists('class_indices.json'):
-         #   with open('class_indices.json', 'r') as f:
-          #      self.class_indices = json.load(f)
-        self.class_indices = {"apple": 0, "banana": 1, "beetroot": 2, "bell pepper": 3, "cabbage": 4, "capsicum": 5, "carrot": 6, "cauliflower": 7, "chilli pepper": 8, "corn": 9, "cucumber": 10, "eggplant": 11, "garlic": 12, "ginger": 13, "grapes": 14, "jalepeno": 15, "kiwi": 16, "lemon": 17, "lettuce": 18, "mango": 19, "onion": 20, "orange": 21, "paprika": 22, "pear": 23, "peas": 24, "pineapple": 25, "pomegranate": 26, "potato": 27, "raddish": 28, "soy beans": 29, "spinach": 30, "sweetcorn": 31, "sweetpotato": 32, "tomato": 33, "turnip": 34, "watermelon": 35}
-        if self.class_indices:
+        try:
+            # Load the model
+            self.model = load_model(model_path)
+            print(f"Model loaded successfully from {model_path}")
+            
+            # Load class indices
+            if class_indices_path and os.path.exists(class_indices_path):
+                with open(class_indices_path, 'r') as f:
+                    self.class_indices = json.load(f)
+                    print(f"Class indices loaded from {class_indices_path}")
+            elif os.path.exists('class_indices.json'):
+                with open('class_indices.json', 'r') as f:
+                    self.class_indices = json.load(f)
+                    print(f"Class indices loaded from class_indices.json")
+            else:
+                # Fallback to hardcoded indices if no file is available
+                self.class_indices = {
+                    "apple": 0, "banana": 1, "beetroot": 2, "bell pepper": 3, 
+                    "cabbage": 4, "capsicum": 5, "carrot": 6, "cauliflower": 7, 
+                    "chilli pepper": 8, "corn": 9, "cucumber": 10, "eggplant": 11, 
+                    "garlic": 12, "ginger": 13, "grapes": 14, "jalepeno": 15, 
+                    "kiwi": 16, "lemon": 17, "lettuce": 18, "mango": 19, 
+                    "onion": 20, "orange": 21, "paprika": 22, "pear": 23, 
+                    "peas": 24, "pineapple": 25, "pomegranate": 26, "potato": 27, 
+                    "raddish": 28, "soy beans": 29, "spinach": 30, "sweetcorn": 31, 
+                    "sweetpotato": 32, "tomato": 33, "turnip": 34, "watermelon": 35
+                }
+                print("Using hardcoded class indices")
+            
+            # Create inverted indices for prediction
             self.inverted_class_indices = {v: k for k, v in self.class_indices.items()}
-        else:
-            raise ValueError("Class indices not found. Please provide path to class_indices.json")
+            
+        except Exception as e:
+            raise ValueError(f"Error loading model or class indices: {str(e)}")
         
         return self
     
@@ -286,19 +305,23 @@ class CropClassifier:
         img_array = np.array(img) / 255.0  # Normalize
         return np.expand_dims(img_array, axis=0)  # Add batch dimension
 
-    def predict(self, image):
+    def predict(self, image, model_path=None):
         """
         Predict crop class from an image.
         
         Args:
             image: Can be a PIL Image, numpy array, or file path
+            model_path: Optional path to the model file if model isn't loaded yet
                 
         Returns:
             dict: JSON-compatible dictionary with crop name and confidence
         """
-        self.load_model(model_path = "model/crop_classifier.keras")
-        if self.model is None:
-            raise ValueError("Model not loaded. Call load_model() first.")
+        # Load model if not already loaded or if a specific model path is provided
+        if self.model is None or model_path is not None:
+            try:
+                self.load_model(model_path or "model/crop_classifier.keras")
+            except Exception as e:
+                raise ValueError(f"Failed to load model: {str(e)}")
         
         # Preprocess the image
         processed_image = self.preprocess_image(image)
