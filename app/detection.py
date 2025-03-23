@@ -317,13 +317,11 @@ class CropClassifier:
         # Return as JSON compatible dictionary
         return {
             "crop_name": crop_name,
-            "confidence": confidence,
-            "all_confidences": {self.inverted_class_indices[i]: float(conf) 
-                            for i, conf in enumerate(predictions[0])}
+            "confidence": confidence
         }
     
     def get_crops_names(self):
-        return []
+        return ["apple", "banana", "beetroot", "bell pepper", "cabbage", "capsicum", "carrot", "cauliflower", "chilli pepper", "corn", "cucumber", "eggplant", "garlic", "ginger", "grapes", "jalepeno", "kiwi", "lemon", "lettuce", "mango", "onion", "orange", "paprika", "pear", "peas", "pineapple", "pomegranate", "potato", "raddish", "soy beans", "spinach", "sweetcorn", "sweetpotato", "tomato", "turnip", "watermelon"]
 
 
 # Example usage (can be imported elsewhere)
