@@ -58,7 +58,8 @@ def test_prediction_endpoint():
 
 def test_crop_detection_endpoint():
     """Test the crop detection endpoint with a sample image."""
-    sample_image_path = "dataset/Crop_detection/banana/image (1).jpeg"
+    sample_image_path = "dataset/Crop_detection/Crop_detection/banana/image (2).png"
+    #dataset\Crop_detection\Crop_detection\banana\image (2).png
     
     if not os.path.exists(sample_image_path):
         print(f"❌ Crop detection test skipped: Test image not found at {sample_image_path}")

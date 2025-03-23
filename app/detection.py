@@ -231,6 +231,11 @@ class CropClassifier:
         try:
             # Load and preprocess image from bytes
             img = Image.open(BytesIO(image_data))
+            
+            # Convert image to RGB if it has an alpha channel
+            if img.mode == 'RGBA':
+                img = img.convert('RGB')
+            
             img = img.resize(self.img_size)
             img_array = img_to_array(img)
             img_array = np.expand_dims(img_array, axis=0)  # Expand dims for batch shape
