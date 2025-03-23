@@ -2,14 +2,12 @@
 N, P, K, temperature, humidity, ph, rainfall
 https://www.kaggle.com/api/v1/datasets/download/atharvaingle/crop-recommendation-dataset
 location to weather
-https://city.imd.gov.in/api/cityweather.php?id=42182 (change 42182 to city id)
+https://openweathermap.org/api
+location to soil quality
+https://soilhealth.dac.gov.in/piechart
 
-
-# crop image classification
-https://www.kaggle.com/api/v1/datasets/download/mdwaquarazam/agricultural-crops-image-classification
+# fruit and vegitable image classification
+https://www.kaggle.com/datasets/kritikseth/fruit-and-vegetable-image-recognition
 
 # real time crop price
-https://www.data.gov.in/resource/current-daily-price-various-commodities-various-markets-mandi
-
-#2023 crop price
-https://www.kaggle.com/api/v1/datasets/download/rajumavinmar/indian-agriculture-crop-price-dataset
+https://agmarknet.gov.in/priceAndArrivals/statedistrict.aspx

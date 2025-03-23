@@ -1,116 +1,81 @@
 import tensorflow as tf
-from tensorflow.keras.preprocessing.image import ImageDataGenerator, load_img, img_to_array
-from tensorflow.keras.applications.mobilenet_v2 import preprocess_input, MobileNetV2
-from tensorflow.keras.layers import Dense, Dropout, GlobalAveragePooling2D
-from tensorflow.keras.models import Model, load_model
+from tensorflow.keras.models import Sequential, load_model
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Dropout, Flatten, Dense
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.callbacks import EarlyStopping, ReduceLROnPlateau, ModelCheckpoint
+import matplotlib.pyplot as plt
 import numpy as np
 import os
-import json
-from io import BytesIO
 from PIL import Image
+import json
 
 class CropClassifier:
-    def __init__(self, dataset_path="dataset/Crop_detection", model_path="model/crop_classification_model.keras"):
-        self.dataset_path = dataset_path
-        self.model_path = model_path
-        self.class_indices_path = os.path.join(os.path.dirname(self.model_path), "class_indices.json")
-        self.img_size = (224, 224)
-        self.batch_size = 32
+    def __init__(self, img_width=224, img_height=224, batch_size=32, epochs=50):
+        """Initialize the CropClassifier with configurable parameters."""
+        # Check for GPU availability and configure
+        self.configure_gpu()
         
-        # Default crop classes if no dataset is available
-        self.default_classes = ["rice", "maize", "chickpea", "kidneybeans", "pigeonpeas", 
-                               "mothbeans", "mungbean", "blackgram", "lentil", "pomegranate", 
-                               "banana", "mango", "grapes", "watermelon", "muskmelon", "apple", 
-                               "orange", "papaya", "coconut", "cotton", "jute", "coffee"]
-        
-        self.crop_classes = self.default_classes  # Initialize with defaults
-        
-        # Check if model exists
-        if os.path.exists(self.model_path):
+        # Model parameters
+        self.img_width = img_width
+        self.img_height = img_height
+        self.batch_size = batch_size
+        self.epochs = epochs
+        self.model = None
+        self.class_indices = None
+    
+    def configure_gpu(self):
+        """Configure GPU if available."""
+        gpus = tf.config.list_physical_devices('GPU')
+        if gpus:
             try:
-                self.model = load_model(self.model_path)
-                print(f"Loaded trained model from {self.model_path}")
-                
-                # Try to load class indices from file
-                if os.path.exists(self.class_indices_path):
-                    with open(self.class_indices_path, 'r') as f:
-                        self.class_indices = json.load(f)
-                        self.crop_classes = list(self.class_indices.keys())
-                        print(f"Loaded crop classes from file: {self.crop_classes}")
-                else:
-                    # Initialize crop classes from dataset directory
-                    self._initialize_crop_classes()
-            except Exception as e:
-                print(f"Error loading model: {e}")
-                self.model = None
+                # Use the first GPU
+                tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
+                # Allow memory growth to avoid taking all GPU memory
+                tf.config.experimental.set_memory_growth(gpus[0], True)
+                print(f"Using GPU: {gpus[0]}")
+            except RuntimeError as e:
+                print(f"GPU configuration error: {e}")
         else:
-            self.model = None
-            print("No trained model found. Will use a default model for predictions.")
+            print("No GPU found. Using CPU.")
+    
+    def build_model(self, num_classes):
+        """Build the CNN model architecture."""
+        model = Sequential([
+            # First convolutional block
+            Conv2D(32, (3, 3), activation='relu', padding='same', 
+                   input_shape=(self.img_width, self.img_height, 3)),
+            MaxPooling2D(pool_size=(2, 2)),
             
-            # Try to initialize a simple model for basic predictions
-            self._initialize_default_model()
-
-    def _initialize_default_model(self):
-        """Initialize a simple model for basic predictions when no trained model exists"""
-        try:
-            # Create a basic MobileNetV2 model
-            base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224, 224, 3))
-            x = base_model.output
-            x = GlobalAveragePooling2D()(x)
-            x = Dense(256, activation="relu")(x)
-            x = Dropout(0.5)(x)
-            predictions = Dense(len(self.crop_classes), activation="softmax")(x)
+            # Second convolutional block
+            Conv2D(64, (3, 3), activation='relu', padding='same'),
+            MaxPooling2D(pool_size=(2, 2)),
             
-            self.model = Model(inputs=base_model.input, outputs=predictions)
-            self.model.compile(
-                optimizer='adam',
-                loss='categorical_crossentropy',
-                metrics=['accuracy']
-            )
-            print("Initialized default model for basic predictions")
-        except Exception as e:
-            print(f"Failed to initialize default model: {e}")
-
-    def _initialize_crop_classes(self):
-        """Initialize crop classes from dataset directory"""
-        if os.path.exists(self.dataset_path):
-            # Get class names from directory structure
-            dirs = [d for d in os.listdir(self.dataset_path) 
-                   if os.path.isdir(os.path.join(self.dataset_path, d))]
+            # Third convolutional block
+            Conv2D(128, (3, 3), activation='relu', padding='same'),
+            MaxPooling2D(pool_size=(2, 2)),
             
-            if dirs:
-                self.crop_classes = sorted(dirs)
-                print(f"Initialized crop classes from directory: {self.crop_classes}")
-                
-                # Create class indices
-                self.class_indices = {cls: i for i, cls in enumerate(self.crop_classes)}
-                
-                # Save class indices to file
-                os.makedirs(os.path.dirname(self.class_indices_path), exist_ok=True)
-                with open(self.class_indices_path, 'w') as f:
-                    json.dump(self.class_indices, f)
-                print(f"Saved class indices to {self.class_indices_path}")
-            else:
-                print("Warning: No crop classes found in dataset directory. Using defaults.")
-                # Create default class indices
-                self.class_indices = {cls: i for i, cls in enumerate(self.default_classes)}
-        else:
-            print(f"Warning: Dataset path {self.dataset_path} not found. Using default classes.")
-            # Create default class indices
-            self.class_indices = {cls: i for i, cls in enumerate(self.default_classes)}
-
-    def train_model(self, epochs=10):
-        """Train the model and save it"""
-        # Check for GPU availability
-        physical_devices = tf.config.list_physical_devices('GPU')
-        if physical_devices:
-            print(f"Found {len(physical_devices)} GPU(s). Training on GPU.")
-            # Configure memory growth to avoid memory allocation errors
-            for device in physical_devices:
-                tf.config.experimental.set_memory_growth(device, True)
-        else:
-            print("No GPU found. Training on CPU.")
+            # Fourth convolutional block
+            Conv2D(128, (3, 3), activation='relu', padding='same'),
+            MaxPooling2D(pool_size=(2, 2)),
             
+            # Flatten and Dense layers
+            Flatten(),
+            Dense(512, activation='relu'),
+            Dropout(0.5),  # Dropout to prevent overfitting
+            Dense(num_classes, activation='softmax')
+        ])
+        
+        # Compile the model
+        model.compile(
+            optimizer=tf.keras.optimizers.Adam(learning_rate=0.001),
+            loss='categorical_crossentropy',
+            metrics=['accuracy']
+        )
+        
+        return model
+    
+    def train(self, train_dir, validation_dir, test_dir=None, model_save_path='crop_classifier.keras'):
+        """Train the model on the provided dataset directories."""
         # Data augmentation for training set
         train_datagen = ImageDataGenerator(
             rescale=1./255,
@@ -120,167 +85,260 @@ class CropClassifier:
             shear_range=0.2,
             zoom_range=0.2,
             horizontal_flip=True,
-            vertical_flip=True,
-            brightness_range=[0.8, 1.2],
-            fill_mode='nearest',
-            validation_split=0.2
+            fill_mode='nearest'
         )
 
-        # Only rescale validation data
-        val_datagen = ImageDataGenerator(
-            rescale=1./255,
-            validation_split=0.2
-        )
-
+        # Only rescaling for validation and test sets
+        valid_datagen = ImageDataGenerator(rescale=1./255)
+        
+        # Load and prepare the datasets
         train_generator = train_datagen.flow_from_directory(
-            self.dataset_path,
-            target_size=self.img_size,
+            train_dir,
+            target_size=(self.img_width, self.img_height),
             batch_size=self.batch_size,
-            class_mode="categorical",
-            subset="training"
+            class_mode='categorical'
         )
 
-        val_generator = val_datagen.flow_from_directory(
-            self.dataset_path,
-            target_size=self.img_size,
+        validation_generator = valid_datagen.flow_from_directory(
+            validation_dir,
+            target_size=(self.img_width, self.img_height),
             batch_size=self.batch_size,
-            class_mode="categorical",
-            subset="validation"
+            class_mode='categorical'
         )
-
+        
+        # Store class indices for prediction
         self.class_indices = train_generator.class_indices
-        self.crop_classes = list(self.class_indices.keys())
-        print("Detected Crop Classes:", self.crop_classes)
-
-        # Load Pretrained Model (MobileNetV2)
-        base_model = MobileNetV2(weights="imagenet", include_top=False, input_shape=(224, 224, 3))
+        self.inverted_class_indices = {v: k for k, v in self.class_indices.items()}
         
-        # Fine-tuning: Unfreeze some top layers for better performance
-        # First freeze all layers
-        base_model.trainable = False
+        # Save class indices to file for later loading
+        with open('class_indices.json', 'w') as f:
+            json.dump(self.class_indices, f)
         
-        # Then unfreeze some top layers for fine-tuning
-        for layer in base_model.layers[-20:]:
-            layer.trainable = True
-
-        # Build Model
-        x = base_model.output
-        x = GlobalAveragePooling2D()(x)
-        x = Dense(256, activation="relu")(x)
-        x = Dropout(0.5)(x)  # Increased dropout rate
-        x = Dense(128, activation="relu")(x)
-        x = Dropout(0.3)(x)
-        predictions = Dense(len(self.crop_classes), activation="softmax")(x)
-
-        self.model = Model(inputs=base_model.input, outputs=predictions)
+        # Get number of classes
+        num_classes = len(self.class_indices)
+        print(f"Number of classes: {num_classes}")
+        print(f"Class indices: {self.class_indices}")
         
-        # Use learning rate scheduler to reduce LR on plateau
-        lr_scheduler = tf.keras.callbacks.ReduceLROnPlateau(
-            monitor='val_loss',
-            factor=0.5,
-            patience=3,
-            min_lr=1e-6,
-            verbose=1
-        )
+        # Build the model
+        self.model = self.build_model(num_classes)
+        self.model.summary()
         
-        # Early stopping to prevent overfitting
-        early_stopping = tf.keras.callbacks.EarlyStopping(
-            monitor='val_loss',
-            patience=5,
-            restore_best_weights=True,
-            verbose=1
-        )
+        # Set up callbacks to prevent overfitting and improve learning
+        callbacks = [
+            # Stop training when validation loss doesn't improve
+            EarlyStopping(
+                monitor='val_loss',
+                patience=10,
+                restore_best_weights=True,
+                verbose=1
+            ),
+            # Reduce learning rate when validation accuracy plateaus
+            ReduceLROnPlateau(
+                monitor='val_accuracy',
+                factor=0.2,
+                patience=5,
+                min_lr=1e-6,
+                verbose=1
+            ),
+            # Save the best model
+            ModelCheckpoint(
+                filepath='best_' + model_save_path,
+                monitor='val_accuracy',
+                save_best_only=True,
+                verbose=1
+            )
+        ]
         
-        # Model checkpoint to save best model
-        checkpoint = tf.keras.callbacks.ModelCheckpoint(
-            self.model_path,
-            monitor='val_accuracy',
-            save_best_only=True,
-            mode='max',
-            verbose=1
-        )
-        
-        self.model.compile(
-            optimizer=tf.keras.optimizers.Adam(learning_rate=0.0005),
-            loss="categorical_crossentropy",
-            metrics=["accuracy", tf.keras.metrics.Precision(), tf.keras.metrics.Recall()]
-        )
-
-        # Train Model
+        # Train the model
         history = self.model.fit(
             train_generator,
-            validation_data=val_generator,
-            epochs=epochs,
-            callbacks=[lr_scheduler, early_stopping, checkpoint]
+            steps_per_epoch=train_generator.samples // self.batch_size,
+            epochs=self.epochs,
+            validation_data=validation_generator,
+            validation_steps=validation_generator.samples // self.batch_size,
+            callbacks=callbacks,
+            verbose=1
         )
-
-        # Save Model (if not already saved by checkpoint)
-        os.makedirs(os.path.dirname(self.model_path), exist_ok=True)
-        if not os.path.exists(self.model_path):
-            self.model.save(self.model_path)
-        print(f"Model saved at {self.model_path}")
-
+        
+        # Evaluate on test set if provided
+        if test_dir:
+            test_datagen = ImageDataGenerator(rescale=1./255)
+            test_generator = test_datagen.flow_from_directory(
+                test_dir,
+                target_size=(self.img_width, self.img_height),
+                batch_size=self.batch_size,
+                class_mode='categorical',
+                shuffle=False
+            )
+            
+            # Evaluate the model on test data
+            test_loss, test_acc = self.model.evaluate(test_generator)
+            print(f"Test accuracy: {test_acc:.4f}")
+            
+            # Generate and plot metrics
+            self.generate_metrics(test_generator, history)
+        
+        # Save the final model
+        self.model.save(model_save_path)
+        print(f"Model saved as '{model_save_path}'")
+        
         return history
-
-    def predict_crop(self, image_data):
-        """Predict the crop type for a given image data"""
-        if self.model is None:
-            print("No model available for prediction")
-            return {"crop": "unknown", "confidence": 0.0}
-
-        try:
-            # Load and preprocess image from bytes
-            img = Image.open(BytesIO(image_data))
-            
-            # Convert image to RGB if it has an alpha channel
-            if img.mode == 'RGBA':
-                img = img.convert('RGB')
-            
-            img = img.resize(self.img_size)
-            img_array = img_to_array(img)
-            img_array = np.expand_dims(img_array, axis=0)  # Expand dims for batch shape
-            img_array = preprocess_input(img_array)
-
-            # Prediction
-            predictions = self.model.predict(img_array)
-            predicted_index = np.argmax(predictions)
-            confidence = float(np.max(predictions) * 100)  # Convert to percentage
-            
-            # Get predicted class
-            if len(self.crop_classes) > predicted_index:
-                predicted_class = self.crop_classes[predicted_index]
-                print(f"Predicted class: {predicted_class} with confidence {confidence:.2f}%")
+    
+    def generate_metrics(self, test_generator, history):
+        """Generate and plot performance metrics."""
+        # Plot training history
+        self.plot_training_history(history)
+        
+        # Make predictions on test data
+        predictions = self.model.predict(test_generator)
+        predicted_classes = np.argmax(predictions, axis=1)
+        
+        # Get true classes
+        true_classes = test_generator.classes
+        
+        # Print classification report
+        from sklearn.metrics import classification_report, confusion_matrix
+        print("\nClassification Report:")
+        print(classification_report(true_classes, predicted_classes, 
+                                    target_names=list(self.inverted_class_indices.values())))
+        
+        # Create and plot confusion matrix
+        cm = confusion_matrix(true_classes, predicted_classes)
+        plt.figure(figsize=(10, 8))
+        plt.imshow(cm, interpolation='nearest', cmap=plt.cm.Blues)
+        plt.title('Confusion Matrix')
+        plt.colorbar()
+        tick_marks = np.arange(len(self.inverted_class_indices))
+        plt.xticks(tick_marks, self.inverted_class_indices.values(), rotation=90)
+        plt.yticks(tick_marks, self.inverted_class_indices.values())
+        plt.tight_layout()
+        plt.ylabel('True Label')
+        plt.xlabel('Predicted Label')
+        plt.savefig('confusion_matrix.png')
+        plt.show()
+    
+    def plot_training_history(self, history):
+        """Plot training and validation accuracy/loss."""
+        plt.figure(figsize=(12, 4))
+        
+        plt.subplot(1, 2, 1)
+        plt.plot(history.history['accuracy'])
+        plt.plot(history.history['val_accuracy'])
+        plt.title('Model Accuracy')
+        plt.ylabel('Accuracy')
+        plt.xlabel('Epoch')
+        plt.legend(['Train', 'Validation'], loc='upper left')
+        
+        plt.subplot(1, 2, 2)
+        plt.plot(history.history['loss'])
+        plt.plot(history.history['val_loss'])
+        plt.title('Model Loss')
+        plt.ylabel('Loss')
+        plt.xlabel('Epoch')
+        plt.legend(['Train', 'Validation'], loc='upper left')
+        
+        plt.tight_layout()
+        plt.savefig('training_history.png')
+        plt.show()
+    
+    def load_model(self, model_path, class_indices_path=None):
+        """Load a pre-trained model and class indices."""
+        self.model = load_model(model_path)
+        
+        # Load class indices
+        if class_indices_path:
+            with open(class_indices_path, 'r') as f:
+                self.class_indices = json.load(f)
+        elif os.path.exists('class_indices.json'):
+            with open('class_indices.json', 'r') as f:
+                self.class_indices = json.load(f)
+                
+        if self.class_indices:
+            self.inverted_class_indices = {v: k for k, v in self.class_indices.items()}
+        else:
+            raise ValueError("Class indices not found. Please provide path to class_indices.json")
+        
+        return self
+    
+    def preprocess_image(self, image):
+        """
+        Preprocess a single image for prediction.
+        
+        Args:
+            image: Can be a PIL Image, numpy array, or file path
+        """
+        # Handle different input types
+        if isinstance(image, str):  # It's a file path
+            img = Image.open(image).convert('RGB')
+        elif isinstance(image, np.ndarray):  # It's a numpy array
+            if image.ndim == 2:  # Grayscale
+                img = Image.fromarray(image).convert('RGB')
             else:
-                print(f"Error: Predicted index {predicted_index} out of range for crop classes (length: {len(self.crop_classes)})")
-                predicted_class = "unknown"
+                img = Image.fromarray(image)
+        elif hasattr(image, 'convert'):  # It's already a PIL Image
+            img = image.convert('RGB')
+        else:
+            raise ValueError("Unsupported image type. Please provide a PIL Image, numpy array, or file path.")
+        
+        # Resize and normalize
+        img = img.resize((self.img_width, self.img_height))
+        img_array = np.array(img) / 255.0  # Normalize
+        return np.expand_dims(img_array, axis=0)  # Add batch dimension
 
-            return {"crop": predicted_class, "confidence": confidence}
-        except Exception as e:
-            print(f"Error during prediction: {str(e)}")
-            import traceback
-            traceback.print_exc()
-            return {"crop": "unknown", "confidence": 0.0}
+    def predict(self, image):
+        """
+        Predict crop class from an image.
+        
+        Args:
+            image: Can be a PIL Image, numpy array, or file path
+                
+        Returns:
+            dict: JSON-compatible dictionary with crop name and confidence
+        """
+        if self.model is None:
+            raise ValueError("Model not loaded. Call load_model() first.")
+        
+        # Preprocess the image
+        processed_image = self.preprocess_image(image)
+        
+        # Make prediction
+        predictions = self.model.predict(processed_image)
+        
+        # Get the predicted class index and confidence
+        predicted_class_index = np.argmax(predictions[0])
+        confidence = float(predictions[0][predicted_class_index])
+        
+        # Get the class name
+        if self.inverted_class_indices:
+            crop_name = self.inverted_class_indices[predicted_class_index]
+        else:
+            crop_name = f"Class_{predicted_class_index}"
+        
+        # Return as JSON compatible dictionary
+        return {
+            "crop_name": crop_name,
+            "confidence": confidence,
+            "all_confidences": {self.inverted_class_indices[i]: float(conf) 
+                            for i, conf in enumerate(predictions[0])}
+        }
 
-def main():
-    classifier = CropClassifier()
 
-    # Train if model doesn't exist
-    if not os.path.exists(classifier.model_path):
-        classifier.train_model(epochs=50)
-
-    # Example Prediction
-    image_path = "/kaggle/input/crop-detection/Crop_detection/banana/sample.jpg"  # Change this to a real image path
-    result = classifier.predict_crop(image_path)
-    print(result)
-# Example Usage
+# Example usage (can be imported elsewhere)
 if __name__ == "__main__":
-    classifier = CropClassifier()
-
-    # Train if model doesn't exist
-    if not os.path.exists(classifier.model_path):
-        classifier.train_model(epochs=50)
-
-    # Example Prediction
-    image_path = "/kaggle/input/crop-detection/Crop_detection/banana/sample.jpg"  # Change this to a real image path
-    result = classifier.predict_crop(image_path)
-    print(result)
+    # Example training
+    classifier = CropClassifier(epochs=20)
+    classifier.train(
+        train_dir='train',
+        validation_dir='validation',
+        test_dir='test',
+        model_save_path='crop_classifier.keras'
+    )
+    
+    # Example prediction
+    # result = classifier.predict("path/to/test_image.jpg")
+    # print(json.dumps(result, indent=4))
+    
+    # Or to load a pre-trained model
+    # classifier = CropClassifier().load_model('crop_classifier.keras')
+    # result = classifier.predict("path/to/test_image.jpg")
+    # print(json.dumps(result, indent=4))
