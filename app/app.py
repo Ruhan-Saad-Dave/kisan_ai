@@ -148,17 +148,19 @@ async def detect_crop(file: UploadFile = File(...)):
     - detected_crop: The type of crop detected in the image
     - confidence: Confidence level of the prediction (0-100%)
     """
-    try:
-        # Create a temporary file
-        temp_file = f"temp_{uuid.uuid4()}.jpg"
-        
+    # Create a temporary directory that will be automatically cleaned up
+    with tempfile.TemporaryDirectory() as temp_dir:
         try:
-            # Save the uploaded file to a temporary location
-            with open(temp_file, "wb") as buffer:
+            # Create a file path in the temporary directory
+            file_extension = Path(file.filename).suffix or ".jpg"
+            temp_file_path = os.path.join(temp_dir, f"temp_{uuid.uuid4()}{file_extension}")
+            
+            # Save the uploaded file to the temporary location
+            with open(temp_file_path, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
             
             # Make prediction using the file path
-            result = crop_classifier.predict(temp_file)
+            result = crop_classifier.predict(temp_file_path)
             
             if result is None:
                 raise HTTPException(
@@ -177,16 +179,12 @@ async def detect_crop(file: UploadFile = File(...)):
                 "detected_crop": result["crop_name"],
                 "confidence": result["confidence"]
             }
-        finally:
-            # Clean up the temporary file
-            if os.path.exists(temp_file):
-                os.remove(temp_file)
-    
-    except Exception as e:
-        raise HTTPException(
-            status_code=500,
-            detail=f"Error detecting crop: {str(e)}"
-        )
+                
+        except Exception as e:
+            raise HTTPException(
+                status_code=500,
+                detail=f"Error detecting crop: {str(e)}"
+            )
 
 @app.get("/districts/", tags=["Metadata"])
 async def get_districts():
