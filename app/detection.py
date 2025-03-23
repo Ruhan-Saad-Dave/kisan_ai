@@ -6,6 +6,8 @@ from tensorflow.keras.models import Model, load_model
 import numpy as np
 import os
 import json
+from io import BytesIO
+from PIL import Image
 
 class CropClassifier:
     def __init__(self, dataset_path="dataset/Crop_detection", model_path="model/crop_classification_model.keras"):
@@ -220,23 +222,16 @@ class CropClassifier:
 
         return history
 
-    def predict_crop(self, image_path):
-        """Predict the crop type for a given image"""
+    def predict_crop(self, image_data):
+        """Predict the crop type for a given image data"""
         if self.model is None:
             print("No model available for prediction")
             return {"crop": "unknown", "confidence": 0.0}
 
-        # Debug information
-        print(f"Predicting crop for image: {image_path}")
-        print(f"Available crop classes: {self.crop_classes}")
-        
-        # Load and preprocess image
         try:
-            if not os.path.exists(image_path):
-                print(f"Error: Image file not found at {image_path}")
-                return {"crop": "unknown", "confidence": 0.0}
-                
-            img = load_img(image_path, target_size=self.img_size)
+            # Load and preprocess image from bytes
+            img = Image.open(BytesIO(image_data))
+            img = img.resize(self.img_size)
             img_array = img_to_array(img)
             img_array = np.expand_dims(img_array, axis=0)  # Expand dims for batch shape
             img_array = preprocess_input(img_array)
@@ -245,9 +240,6 @@ class CropClassifier:
             predictions = self.model.predict(img_array)
             predicted_index = np.argmax(predictions)
             confidence = float(np.max(predictions) * 100)  # Convert to percentage
-            
-            print(f"Prediction array: {predictions}")
-            print(f"Predicted index: {predicted_index}")
             
             # Get predicted class
             if len(self.crop_classes) > predicted_index:

@@ -136,23 +136,11 @@ async def detect_crop(file: UploadFile = File(...)):
     - confidence: Confidence level of the prediction (0-100%)
     """
     try:
-        # Create temp directory if it doesn't exist
-        temp_dir = "/tmp/uploads"  # Changed to use /tmp which is usually writable
-        os.makedirs(temp_dir, exist_ok=True)
-        
-        # Generate a unique filename
-        file_extension = os.path.splitext(file.filename)[1]
-        temp_file_path = os.path.join(temp_dir, f"{uuid.uuid4()}{file_extension}")
-        
-        # Save uploaded file
-        with open(temp_file_path, "wb") as buffer:
-            shutil.copyfileobj(file.file, buffer)
+        # Read the image file directly
+        image_data = await file.read()
         
         # Make prediction
-        result = crop_classifier.predict_crop(temp_file_path)
-        
-        # Clean up
-        os.remove(temp_file_path)
+        result = crop_classifier.predict_crop(image_data)
         
         if result is None:
             raise HTTPException(
@@ -166,10 +154,6 @@ async def detect_crop(file: UploadFile = File(...)):
         }
     
     except Exception as e:
-        # Clean up in case of error
-        if 'temp_file_path' in locals() and os.path.exists(temp_file_path):
-            os.remove(temp_file_path)
-            
         raise HTTPException(
             status_code=500,
             detail=f"Error detecting crop: {str(e)}"
