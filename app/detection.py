@@ -243,16 +243,17 @@ class CropClassifier:
     
     def load_model(self, model_path, class_indices_path=None):
         """Load a pre-trained model and class indices."""
-        self.model = load_model(model_path)
+
+        #self.model = load_model(model_path)
         
         # Load class indices
-        if class_indices_path:
-            with open(class_indices_path, 'r') as f:
-                self.class_indices = json.load(f)
-        elif os.path.exists('class_indices.json'):
-            with open('class_indices.json', 'r') as f:
-                self.class_indices = json.load(f)
-                
+        #if class_indices_path:
+         #   with open(class_indices_path, 'r') as f:
+          #      self.class_indices = json.load(f)
+        #elif os.path.exists('class_indices.json'):
+         #   with open('class_indices.json', 'r') as f:
+          #      self.class_indices = json.load(f)
+        self.class_indices = {"apple": 0, "banana": 1, "beetroot": 2, "bell pepper": 3, "cabbage": 4, "capsicum": 5, "carrot": 6, "cauliflower": 7, "chilli pepper": 8, "corn": 9, "cucumber": 10, "eggplant": 11, "garlic": 12, "ginger": 13, "grapes": 14, "jalepeno": 15, "kiwi": 16, "lemon": 17, "lettuce": 18, "mango": 19, "onion": 20, "orange": 21, "paprika": 22, "pear": 23, "peas": 24, "pineapple": 25, "pomegranate": 26, "potato": 27, "raddish": 28, "soy beans": 29, "spinach": 30, "sweetcorn": 31, "sweetpotato": 32, "tomato": 33, "turnip": 34, "watermelon": 35}
         if self.class_indices:
             self.inverted_class_indices = {v: k for k, v in self.class_indices.items()}
         else:
