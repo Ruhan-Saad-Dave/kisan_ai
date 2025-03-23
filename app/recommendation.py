@@ -53,28 +53,34 @@ class CropRecommendationModel:
 
     def get_soil_data(self, district, block=None):
         """Fetch soil quality data for the given district/block."""
-        district_file = os.path.join(f"{self.dataset_dir}/region_soil/", "maharashtra.csv")
-        
-        if not os.path.exists(district_file):
+
+        # Default to Maharashtra CSV file
+        default_file = os.path.join(self.dataset_dir, "region_soil", "maharashtra.csv")
+        district_file = os.path.join(self.dataset_dir, "region_soil", f"{district.lower().replace(' ', '_')}.csv")
+
+        if not os.path.exists(default_file):
             raise FileNotFoundError("Maharashtra data file not found.")
 
-        df = pd.read_csv(district_file)
-        
+        df = pd.read_csv(default_file)  # Load Maharashtra file initially
+
         if block:
-            block_file = os.path.join(f"{self.dataset_dir}/region_soil/", f"{district.lower()}.csv")
-            if os.path.exists(block_file):
-                df = pd.read_csv(block_file)
-                df = df[df["Block"] == block]
+            if os.path.exists(district_file):
+                df = pd.read_csv(district_file)
             else:
-                print(f"Block data file for {district} not found. Searching in all districts.")
-                df = df[df["Block"] == block]  # Search in maharashtra.csv
+                logging.warning(f"District file '{district_file}' not found. Falling back to Maharashtra dataset.")
+            
+            # Filter by block
+            df = df[df["Block"].str.lower() == block.lower()]
         else:
-            df = df[df["District"] == district]
+            # Filter only by district
+            df = df[df["District"].str.lower() == district.lower()]
 
         if df.empty:
-            raise ValueError("No matching district/block found in the dataset.")
-        
-        return df[["N_low", "N_mid", "N_high", "P_low", "P_mid", "P_high", "K_low", "K_mid", "K_high", "pH_low", "pH_mid", "pH_high"]].mean().tolist()
+            raise ValueError(f"No matching data found for District: {district}, Block: {block if block else 'N/A'}")
+
+        # Select relevant soil columns and return mean values as a list
+        soil_columns = ["N_low", "N_mid", "N_high", "P_low", "P_mid", "P_high", "K_low", "K_mid", "K_high", "pH_low", "pH_mid", "pH_high"]
+        return df[soil_columns].mean().tolist()
     
     def get_weather_data(self, district):
         """Fetch temperature, humidity, and rainfall data from OpenWeatherMap API."""
