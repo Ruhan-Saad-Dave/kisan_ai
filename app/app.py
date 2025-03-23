@@ -153,7 +153,7 @@ async def detect_crop(file: UploadFile = File(...)):
         image_data = await file.read()
         
         # Make prediction
-        result = crop_classifier.predict_crop(image_data)
+        result = crop_classifier.predict(image_data)
         
         if result is None:
             raise HTTPException(
