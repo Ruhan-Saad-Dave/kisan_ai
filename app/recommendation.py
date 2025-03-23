@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score
+import logging
 
 class CropRecommendationModel:
     def __init__(self, dataset_dir="dataset/"):
@@ -95,20 +96,26 @@ class CropRecommendationModel:
 
         try:
             soil_data = self.get_soil_data(district, block)
+            logging.info(f"Soil data for {district}, {block}: {soil_data}")
         except (FileNotFoundError, ValueError) as e:
+            logging.error(f"Error fetching soil data: {e}")
             return str(e)
 
         weather_data = self.get_weather_data(district)
+        logging.info(f"Weather data for {district}: {weather_data}")
         if weather_data is None:
+            logging.error("Weather data unavailable. Cannot proceed with prediction.")
             return "Weather data unavailable. Cannot proceed with prediction."
         
         input_data = soil_data + weather_data
+        logging.info(f"Input data for prediction: {input_data}")
         input_data = self.scaler.transform([input_data])
         probabilities = self.model.predict_proba(input_data)[0]
         top_3_indices = probabilities.argsort()[-3:][::-1]
         top_3_crops = self.label_encoder.inverse_transform(top_3_indices)
         top_3_confidences = probabilities[top_3_indices] * 100
 
+        logging.info(f"Top 3 crops: {top_3_crops} with confidences: {top_3_confidences}")
         return [(crop, round(conf, 2)) for crop, conf in zip(top_3_crops, top_3_confidences)]
     
     def get_available_districts(self):

@@ -34,6 +34,19 @@ try:
 except Exception as e:
     print(f"Error loading model: {e}")
     print("Model will be trained on first request")
+    # Train the model if not loaded
+    if os.path.exists("dataset/Crop_recommendation.csv"):
+        model.train("dataset/Crop_recommendation.csv")
+        model.save_model(
+            model_path="model/crop_model.pkl",
+            scaler_path="model/scaler.pkl",
+            encoder_path="model/label_encoder.pkl"
+        )
+    else:
+        raise HTTPException(
+            status_code=500, 
+            detail="Model not trained and dataset not found"
+        )
 
 class SoilData(BaseModel):
     N: float
