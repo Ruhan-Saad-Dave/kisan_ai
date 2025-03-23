@@ -18,23 +18,23 @@ class CropPriceFinder:
         :return: Dictionary containing min and max price.
         """
         # Filter by crop name
-        filtered_df = self.df[self.df['commodity'].str.contains(crop_name, case=False, na=False)]
+        filtered_df = self.df[self.df['Commodity'].str.contains(crop_name, case=False, na=False)]
         
         # Further filter by district if provided
         if district:
-            filtered_df = filtered_df[filtered_df['district'].str.contains(district, case=False, na=False)]
+            filtered_df = filtered_df[filtered_df['District'].str.contains(district, case=False, na=False)]
         
         # Further filter by market if provided
         if market:
-            filtered_df = filtered_df[filtered_df['market'].str.contains(market, case=False, na=False)]
+            filtered_df = filtered_df[filtered_df['Market'].str.contains(market, case=False, na=False)]
         
         # If no data is found, return None
         if filtered_df.empty:
             return {"message": "No data found for the given query."}
         
         # Calculate the average price if multiple entries exist
-        min_price = filtered_df['min_price'].mean()
-        max_price = filtered_df['max_price'].mean()
+        min_price = filtered_df['Min Price'].mean()
+        max_price = filtered_df['Max Price'].mean()
         
         return {
             "crop": crop_name,
