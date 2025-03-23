@@ -9,3 +9,4 @@ requests
 tensorflow
 python-multipart
 Pillow
+matplotlib

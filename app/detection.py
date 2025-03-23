@@ -321,6 +321,9 @@ class CropClassifier:
             "all_confidences": {self.inverted_class_indices[i]: float(conf) 
                             for i, conf in enumerate(predictions[0])}
         }
+    
+    def get_crops_names(self):
+        return []
 
 
 # Example usage (can be imported elsewhere)
