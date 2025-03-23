@@ -162,7 +162,7 @@ async def detect_crop(file: UploadFile = File(...)):
             )
         
         return {
-            "detected_crop": result["crop"],
+            "detected_crop": result["crop_name"],
             "confidence": result["confidence"]
         }
     
